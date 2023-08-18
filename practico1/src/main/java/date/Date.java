@@ -42,10 +42,12 @@ public class Date {
 	/*@ requires 1<=m && m<=12 && d >= 1 && d<=31 &&
 	((m==4 || m==6 || m==9 || m==11) ==> d<=30) &&
 	((m==2 && leap(y)) ==> d <= 29) &&
-	((m==2 && leap(y)) ==> d<= 28) && 1900 <= y;
+	((m==2 && !leap(y)) ==> d<= 28) && 1900 <= y;
 	@*/
 	public Date(int d, int m,  int y) throws IllegalArgumentException{
 		//TODO
+		
+		
 		assert repOk();
 	}
 	
@@ -75,7 +77,7 @@ public class Date {
 	@*/
 	public boolean after(Date when) {
 		if(this.getYear() > when.getYear())
-			return false; //Intentional inserted bug here
+			return false;
 	    if(getYear() == when.getYear() && getMonth() > when.getMonth()) 
 	    	return true;
 	    if(getYear() == when.getYear() && getMonth() == when.getMonth() && getDay() > when.getDay())
