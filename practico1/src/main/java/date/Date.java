@@ -46,8 +46,9 @@ public class Date {
 	@*/
 	public Date(int d, int m,  int y) throws IllegalArgumentException{
 		//TODO
-		
-		
+		this.day   = d;
+		this.month = m;
+		this.year  = y;
 		assert repOk();
 	}
 	
