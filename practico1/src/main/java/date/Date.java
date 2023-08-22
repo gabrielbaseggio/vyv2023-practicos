@@ -46,6 +46,7 @@ public class Date {
 	@*/
 	public Date(int d, int m,  int y) throws IllegalArgumentException{
 		if(d > 31) { throw new IllegalArgumentException("Invalid day."); }
+		if(d <  1) { throw new IllegalArgumentException("Invalid day."); }
 		this.day   = d;
 		this.month = m;
 		this.year  = y;
