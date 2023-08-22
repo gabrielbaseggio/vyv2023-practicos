@@ -3,7 +3,8 @@ package date;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,51 +22,10 @@ public class DateTest {
 		assertEquals(1900, year);
 	}
 	
-	@Test
-	public void invalidDay1() 
+	@ParameterizedTest
+	@CsvFileSource(resources = "./csvSource.csv", numLinesToSkip = 1)
+	public void invalidDate(int d, int m, int y) 
 	{
-		assertThrows(IllegalArgumentException.class, () -> new Date(32, 2, 1900));
-	}
-	
-	@Test
-	public void invalidDay2() 
-	{
-		assertThrows(IllegalArgumentException.class, () -> new Date(0, 1, 1900));
-	}
-	
-	@Test
-	public void invalidMonth1() 
-	{
-		assertThrows(IllegalArgumentException.class, () -> new Date(1, 13, 1900));
-	}
-	
-	@Test
-	public void invalidMonth2() 
-	{
-		assertThrows(IllegalArgumentException.class, () -> new Date(1, 0, 1900));
-	}
-	
-	@Test
-	public void invalidYear1() 
-	{
-		assertThrows(IllegalArgumentException.class, () -> new Date(1, 1, 1899));
-	}
-	
-	@Test
-	public void invalidDay3() 
-	{
-		assertThrows(IllegalArgumentException.class, () -> new Date(31, 4, 1900));
-	}
-	
-	@Test
-	public void invalidDay4() 
-	{
-		assertThrows(IllegalArgumentException.class, () -> new Date(31, 6, 1900));
-	}
-	
-	@Test
-	public void invalidDay5() 
-	{
-		assertThrows(IllegalArgumentException.class, () -> new Date(31, 9, 1900));
+		assertThrows(IllegalArgumentException.class, () -> new Date(d, m, y));
 	}
 }

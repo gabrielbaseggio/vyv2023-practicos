@@ -61,7 +61,7 @@ public class Date {
 		if(m > 12) { throw new IllegalArgumentException("Invalid month."); }
 		if(m <  1) { throw new IllegalArgumentException("Invalid month."); }
 		if(y < 1900) { throw new IllegalArgumentException("Invalid year."); }
-		if((m == 4 || m == 6) && d > 30) 
+		if((m == 4 || m == 6 || m == 9 || m == 11) && d > 30) 
 		{
 			throw new IllegalArgumentException("Invalid day.");
 		}
