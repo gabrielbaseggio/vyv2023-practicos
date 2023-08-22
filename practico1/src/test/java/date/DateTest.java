@@ -20,4 +20,10 @@ public class DateTest {
 		assertEquals(1,    month);
 		assertEquals(1900, year);
 	}
+	
+	@Test
+	public void invalidDay1() 
+	{
+		assertThrows(IllegalArgumentException.class, () -> new Date(32, 2, 1900));
+	}
 }

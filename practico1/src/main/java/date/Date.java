@@ -45,7 +45,7 @@ public class Date {
 	((m==2 && !leap(y)) ==> d<= 28) && 1900 <= y;
 	@*/
 	public Date(int d, int m,  int y) throws IllegalArgumentException{
-		//TODO
+		if(d > 31) { throw new IllegalArgumentException("Invalid day."); }
 		this.day   = d;
 		this.month = m;
 		this.year  = y;
