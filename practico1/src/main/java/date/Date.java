@@ -49,6 +49,7 @@ public class Date {
 		if(d <  1) { throw new IllegalArgumentException("Invalid day."); }
 		if(m > 12) { throw new IllegalArgumentException("Invalid month."); }
 		if(m <  1) { throw new IllegalArgumentException("Invalid month."); }
+		if(y < 1900) { throw new IllegalArgumentException("Invalid year."); }
 		this.day   = d;
 		this.month = m;
 		this.year  = y;
