@@ -56,4 +56,10 @@ public class DateTest {
 	{
 		assertThrows(IllegalArgumentException.class, () -> new Date(31, 4, 1900));
 	}
+	
+	@Test
+	public void invalidDay4() 
+	{
+		assertThrows(IllegalArgumentException.class, () -> new Date(31, 6, 1900));
+	}
 }
