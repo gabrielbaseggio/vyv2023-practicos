@@ -38,4 +38,10 @@ public class DateTest {
 	{
 		assertThrows(IllegalArgumentException.class, () -> new Date(1, 13, 1900));
 	}
+	
+	@Test
+	public void invalidMonth2() 
+	{
+		assertThrows(IllegalArgumentException.class, () -> new Date(1, 0, 1900));
+	}
 }
