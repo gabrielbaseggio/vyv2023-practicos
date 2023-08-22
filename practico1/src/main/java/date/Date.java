@@ -45,11 +45,8 @@ public class Date {
 	((m==2 && !leap(y)) ==> d<= 28) && 1900 <= y;
 	@*/
 	public Date(int d, int m,  int y) throws IllegalArgumentException{
-		if(d > 31) { throw new IllegalArgumentException("Invalid day."); }
-		if(d <  1) { throw new IllegalArgumentException("Invalid day."); }
-		if(m > 12) { throw new IllegalArgumentException("Invalid month."); }
-		if(m <  1) { throw new IllegalArgumentException("Invalid month."); }
-		if(y < 1900) { throw new IllegalArgumentException("Invalid year."); }
+		checkIfItsAValidDate(d, m, y);
+		
 		this.day   = d;
 		this.month = m;
 		this.year  = y;
@@ -57,6 +54,21 @@ public class Date {
 	}
 	
 	
+
+	private void checkIfItsAValidDate(int d, int m, int y) {
+		if(d > 31) { throw new IllegalArgumentException("Invalid day."); }
+		if(d <  1) { throw new IllegalArgumentException("Invalid day."); }
+		if(m > 12) { throw new IllegalArgumentException("Invalid month."); }
+		if(m <  1) { throw new IllegalArgumentException("Invalid month."); }
+		if(y < 1900) { throw new IllegalArgumentException("Invalid year."); }
+		if(m == 4 && d > 30) 
+		{
+			throw new IllegalArgumentException("Invalid day.");
+		}
+		
+		
+	}
+
 
 	public /*@ pure @*/ boolean repOk() {
 		//TODO
