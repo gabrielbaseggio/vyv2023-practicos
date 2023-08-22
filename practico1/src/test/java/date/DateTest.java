@@ -32,4 +32,10 @@ public class DateTest {
 	{
 		assertThrows(IllegalArgumentException.class, () -> new Date(0, 1, 1900));
 	}
+	
+	@Test
+	public void invalidMonth1() 
+	{
+		assertThrows(IllegalArgumentException.class, () -> new Date(1, 13, 1900));
+	}
 }
