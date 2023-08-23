@@ -68,4 +68,12 @@ class PointTest {
 		Point q = new Point(5, -1);
 		assertEquals(6.70, p.distanceTo(q), 0.01);
 	}
+	
+	@Test
+	public void distance3() 
+	{
+		Point p = new Point(1, 1);
+		Point q = new Point(1, 1);
+		assertEquals(0, p.distanceTo(q), 0.01);
+	}
 }
