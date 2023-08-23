@@ -38,4 +38,10 @@ public class mineFieldTest {
 	{
 		assertThrows(IllegalArgumentException.class, () -> minefield.minedNeighbours(8, 0));
 	}
+	
+	@Test
+	public void minedNeighbours4() 
+	{
+		assertThrows(IllegalArgumentException.class, () -> minefield.minedNeighbours(0, 8));
+	}
 }

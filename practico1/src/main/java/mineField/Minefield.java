@@ -51,7 +51,7 @@ public class Minefield {
     		throw new IllegalArgumentException("x out of range.");
     	}
     	
-    	if(y < 0) 
+    	if(y < 0 || y > 7) 
     	{
     		throw new IllegalArgumentException("y out of range.");
     	}
