@@ -17,9 +17,6 @@ class VersionTest {
 		
 	}
 	
-	//TODO
-	//write your tests here
-	
 	@Test
 	public void nameDoesNotChange() 
 	{
