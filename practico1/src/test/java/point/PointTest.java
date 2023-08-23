@@ -106,4 +106,12 @@ class PointTest {
 		Point q = new Point(2, 1);
 		assertFalse(p.equals(q));
 	}
+	
+	@Test
+	public void equals5() 
+	{
+		Point p = new Point(1, 1);
+		Point q = new Point(1, 1);
+		assertTrue(p.equals(q));
+	}
 }
