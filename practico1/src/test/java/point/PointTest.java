@@ -83,4 +83,11 @@ class PointTest {
 		Point p = new Point(1, 1);
 		assertFalse(p.equals(null));
 	}
+	
+	@Test
+	public void equals2() 
+	{
+		Point p = new Point(1, 1);
+		assertTrue(p.equals(p));
+	}
 }
