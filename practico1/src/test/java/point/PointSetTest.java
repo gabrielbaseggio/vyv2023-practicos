@@ -85,6 +85,27 @@ class PointSetTest {
 			Point[] array = set.sort();
 			assertTrue(isSorted(array));
 		}
+		
+		@Test
+		public void sortTest4() 
+		{
+			PointSet set = new PointSet();
+			set.addPoint(new Point(5, 1));
+			set.addPoint(new Point(5, 2));
+			set.addPoint(new Point(4, 1));
+			Point[] array = set.sort();
+			assertTrue(isSorted(array));
+		}
+		
+		@Test
+		public void closest() 
+		{
+			Point expFst = new Point(2, 3);
+			Point expSnd = new Point(1, 4);
+			Pair<Point, Point> res = set.closest();
+			assertEquals(res.getFst(), expFst);
+			assertEquals(res.getSnd(), expSnd);
+		}
 
 
 		private boolean isSorted(Point[] array) 
