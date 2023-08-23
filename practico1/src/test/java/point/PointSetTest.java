@@ -98,10 +98,38 @@ class PointSetTest {
 		}
 		
 		@Test
-		public void closest() 
+		public void closestTest1() 
 		{
 			Point expFst = new Point(2, 3);
 			Point expSnd = new Point(1, 4);
+			Pair<Point, Point> res = set.closest();
+			assertEquals(res.getFst(), expFst);
+			assertEquals(res.getSnd(), expSnd);
+		}
+		
+		@Test
+		public void closestTest2() 
+		{
+			PointSet set = new PointSet();
+			set.addPoint(new Point(1, 0.5f));
+			set.addPoint(new Point(1, -1));
+			set.addPoint(new Point(1, 0));
+			Point expFst = new Point(1, 0.5f);
+			Point expSnd = new Point(1, 0);
+			Pair<Point, Point> res = set.closest();
+			assertEquals(res.getFst(), expFst);
+			assertEquals(res.getSnd(), expSnd);
+		}
+		
+		@Test
+		public void closestTest3() 
+		{
+			PointSet set = new PointSet();
+			set.addPoint(new Point(1, 0));
+			set.addPoint(new Point(1, -1));
+			set.addPoint(new Point(0, 1));
+			Point expFst = new Point(1, 0);
+			Point expSnd = new Point(1, -1);
 			Pair<Point, Point> res = set.closest();
 			assertEquals(res.getFst(), expFst);
 			assertEquals(res.getSnd(), expSnd);
