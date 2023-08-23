@@ -120,7 +120,7 @@ public class Date {
 	@*/
 	public boolean after(Date when) {
 		if(this.getYear() > when.getYear())
-			return false;
+			return true;
 	    if(getYear() == when.getYear() && getMonth() > when.getMonth()) 
 	    	return true;
 	    if(getYear() == when.getYear() && getMonth() == when.getMonth() && getDay() > when.getDay())
