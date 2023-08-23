@@ -33,4 +33,10 @@ class VersionTest {
 	{
 		assertEquals("doc1", doc1.getName());
 	}
+	
+	@Test
+	public void numberOfVersion() 
+	{
+		assertEquals(4, doc1.getNumberOfVersion());
+	}
 }
