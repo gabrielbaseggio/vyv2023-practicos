@@ -64,6 +64,14 @@ class PointSetTest {
 			Point[] array = set.sort();
 			assertTrue(isSorted(array));
 		}
+		
+		@Test
+		public void sortTest2() 
+		{
+			PointSet set = new PointSet();
+			Point[] array = set.sort();
+			assertTrue(isSorted(array));
+		}
 
 
 		private boolean isSorted(Point[] array) 
