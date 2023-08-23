@@ -37,6 +37,9 @@ class VersionTest {
 	@Test
 	public void numberOfVersion() 
 	{
-		assertEquals(4, doc1.getNumberOfVersion());
+		Version version = doc1.getLastVersion();
+		assertEquals(2, version.getMajor());
+		assertEquals(1, version.getIntermediate());
+		assertEquals(1, version.getMinor());
 	}
 }
