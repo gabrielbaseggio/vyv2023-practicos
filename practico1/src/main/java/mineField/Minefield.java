@@ -50,6 +50,11 @@ public class Minefield {
     	{
     		throw new IllegalArgumentException("x out of range.");
     	}
+    	
+    	if(y < 0) 
+    	{
+    		throw new IllegalArgumentException("y out of range.");
+    	}
 		return 0;
 	}
 
