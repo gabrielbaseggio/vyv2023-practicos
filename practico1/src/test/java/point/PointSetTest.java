@@ -45,10 +45,18 @@ class PointSetTest {
 	    	Point p4 = new Point(1,6);
 	    	int sizeBefore = set.size();
 			set.addPoint(p4);
-			int sizeAfter= set.size();
-			
-			assertThat(sizeBefore,equalTo(sizeAfter));
+			int sizeAfter  = set.size();
+			System.out.println(sizeBefore);
+			System.out.println(sizeAfter);
+			assertThat(sizeBefore, equalTo(sizeAfter));
 	  	}
 		
-	  
+		@Test
+		public void test03() 
+		{
+			System.out.println(set.toString());
+			Point point = new Point(1, 6);
+			System.out.println(point.toString());
+			assertTrue(set.contains(point));
+		}
 }

@@ -59,7 +59,7 @@ public class Point {
 	 * @param x es el valor con el cual setear la segunda coordenada del punto
 	 */
 	public void setY(float y) {
-		this.y = x;
+		this.y = y;
 	}
 	
 	/**
@@ -93,11 +93,7 @@ public class Point {
 		if (getClass() != obj.getClass())
 			return false;
 		Point other = (Point) obj;
-		if (x!=other.x)
-			return false;
-		if (y!=other.y)
-			return false;
-		return true;
+		return x == other.x && y == other.y;
 	}
 
 	@Override

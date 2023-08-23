@@ -114,4 +114,14 @@ class PointTest {
 		Point q = new Point(1, 1);
 		assertTrue(p.equals(q));
 	}
+	
+	@Test
+	public void setTest() 
+	{
+		Point p = new Point();
+		p.setX(1);
+		p.setY(2);
+		assertEquals(1, p.getX());
+		assertEquals(2, p.getY());
+	}
 }
