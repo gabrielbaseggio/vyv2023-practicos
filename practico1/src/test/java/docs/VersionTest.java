@@ -9,19 +9,11 @@ import org.junit.jupiter.api.Test;
 
 
 class VersionTest {
-	private  Document doc1 = null;
+	private  Document doc = null;
 	
 	@BeforeEach
 	public  void setUp() {
-	
-		//It Always creates version 1.0.0
-	    doc1 = new Document("doc1");
-				
-		Version firstVersion = doc1.getLastVersion();
-		//Create 2.1.1 version
-		Version newVersion1 = doc1.createNewVersion(Version.modifier.MAJOR);
-		Version newVersion2 = doc1.createNewVersion(Version.modifier.INTERMEDIATE);
-		Version newVersion3 = doc1.createNewVersion(Version.modifier.MINOR);
+	    doc = new Document("doc");
 		
 	}
 	
@@ -31,13 +23,25 @@ class VersionTest {
 	@Test
 	public void nameDoesNotChange() 
 	{
-		assertEquals("doc1", doc1.getName());
+		assertEquals("doc", doc.getName());
 	}
 	
 	@Test
-	public void numberOfVersion() 
+	public void numberOfVersion1() 
 	{
-		Version version = doc1.getLastVersion();
+		Version version = doc.getLastVersion();
+		assertEquals(1, version.getMajor());
+		assertEquals(0, version.getIntermediate());
+		assertEquals(0, version.getMinor());
+	}
+	
+	@Test
+	public void numberOfVersion2() 
+	{
+		Version version = doc.getLastVersion();
+		version = version.createNewVersion(Version.modifier.MAJOR);
+		version = version.createNewVersion(Version.modifier.INTERMEDIATE);
+		version = version.createNewVersion(Version.modifier.MINOR);
 		assertEquals(2, version.getMajor());
 		assertEquals(1, version.getIntermediate());
 		assertEquals(1, version.getMinor());
