@@ -2,6 +2,8 @@ package point;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.function.BooleanSupplier;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,17 +48,31 @@ class PointSetTest {
 	    	int sizeBefore = set.size();
 			set.addPoint(p4);
 			int sizeAfter  = set.size();
-			System.out.println(sizeBefore);
-			System.out.println(sizeAfter);
 			assertThat(sizeBefore, equalTo(sizeAfter));
 	  	}
 		
 		@Test
 		public void test03() 
 		{
-			System.out.println(set.toString());
-			Point point = new Point(1, 6);
-			System.out.println(point.toString());
+			Point point = new Point(1,6);
 			assertTrue(set.contains(point));
+		}
+		
+		@Test
+		public void sortTest() 
+		{
+			Point[] array = set.sort();
+			assertTrue(isSorted(array));
+		}
+
+
+		private boolean isSorted(Point[] array) 
+		{
+			boolean isSorted = true;
+			for(int i = 0; i < array.length - 1 && isSorted; i++) 
+			{
+				isSorted = isSorted && array[i].getX() <= array[i + 1].getX();
+			}
+			return isSorted;
 		}
 }
