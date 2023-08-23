@@ -95,7 +95,7 @@ public class Point {
 		Point other = (Point) obj;
 		if (x!=other.x)
 			return false;
-		if (y != other.y)
+		if (y!=other.y)
 			return false;
 		return true;
 	}
