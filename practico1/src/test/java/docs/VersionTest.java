@@ -58,4 +58,16 @@ class VersionTest {
 		assertEquals(0, version.getIntermediate());
 		assertEquals(0, version.getMinor());
 	}
+	
+	@Test
+	public void numberOfVersion4() 
+	{
+		Version version = doc.getLastVersion();
+		version = version.createNewVersion(Version.modifier.INTERMEDIATE);
+		version = version.createNewVersion(Version.modifier.MINOR);
+		version = version.createNewVersion(Version.modifier.INTERMEDIATE);
+		assertEquals(1, version.getMajor());
+		assertEquals(2, version.getIntermediate());
+		assertEquals(0, version.getMinor());
+	}
 }
