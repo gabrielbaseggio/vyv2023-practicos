@@ -57,37 +57,37 @@ public class Minefield {
     	}
     	
     	int n = 0;
-    	if(field[x-1][y-1].isMined()) 
+    	if(x-1 >= 0 && y-1 >= 0 && field[x-1][y-1].isMined()) 
     	{
     		n++;
     	}
     	
-    	if(field[x-1][y+1].isMined()) 
+    	if(x-1 >= 0 && y+1 <= 7 && field[x-1][y+1].isMined()) 
     	{
     		n++;
     	}
     	
-    	if(field[x][y-1].isMined()) 
+    	if(y-1 >= 0 && field[x][y-1].isMined()) 
     	{
     		n++;
     	}
     	
-    	if(field[x][y+1].isMined()) 
+    	if(y+1 <= 7 && field[x][y+1].isMined()) 
     	{
     		n++;
     	}
     	
-    	if(field[x+1][y-1].isMined()) 
+    	if(x+1 <= 7 && y-1 >= 0 && field[x+1][y-1].isMined()) 
     	{
     		n++;
     	}
     	
-    	if(field[x+1][y].isMined()) 
+    	if(x+1 <= 7 && field[x+1][y].isMined()) 
     	{
     		n++;
     	}
     	
-    	if(field[x+1][y+1].isMined()) 
+    	if(x+1 <= 7 && y+1 <= 7 && field[x+1][y+1].isMined()) 
     	{
     		n++;
     	}

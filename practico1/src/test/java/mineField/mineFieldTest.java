@@ -51,4 +51,10 @@ public class mineFieldTest {
 	{
 		assertEquals(2, minefield.minedNeighbours(5, 5));
 	}
+	
+	@Test
+	public void minedNeighbours6() 
+	{
+		assertEquals(1, minefield.minedNeighbours(0, 0));
+	}
 }
