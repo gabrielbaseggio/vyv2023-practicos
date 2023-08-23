@@ -1,5 +1,6 @@
 package mineField;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -43,5 +44,11 @@ public class mineFieldTest {
 	public void minedNeighbours4() 
 	{
 		assertThrows(IllegalArgumentException.class, () -> minefield.minedNeighbours(0, 8));
+	}
+	
+	@Test
+	public void minedNeighbours5() 
+	{
+		assertEquals(2, minefield.minedNeighbours(5, 5));
 	}
 }

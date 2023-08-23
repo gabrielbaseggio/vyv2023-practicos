@@ -55,7 +55,45 @@ public class Minefield {
     	{
     		throw new IllegalArgumentException("y out of range.");
     	}
-		return 0;
+    	
+    	int n = 0;
+    	if(field[x-1][y-1].isMined()) 
+    	{
+    		n++;
+    	}
+    	
+    	if(field[x-1][y+1].isMined()) 
+    	{
+    		n++;
+    	}
+    	
+    	if(field[x][y-1].isMined()) 
+    	{
+    		n++;
+    	}
+    	
+    	if(field[x][y+1].isMined()) 
+    	{
+    		n++;
+    	}
+    	
+    	if(field[x+1][y-1].isMined()) 
+    	{
+    		n++;
+    	}
+    	
+    	if(field[x+1][y].isMined()) 
+    	{
+    		n++;
+    	}
+    	
+    	if(field[x+1][y+1].isMined()) 
+    	{
+    		n++;
+    	}
+    	
+    	
+		return n;
 	}
 
 	
