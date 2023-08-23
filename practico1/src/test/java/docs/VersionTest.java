@@ -27,8 +27,10 @@ class VersionTest {
 	
 	//TODO
 	//write your tests here
-
 	
-	
-
+	@Test
+	public void nameDoesNotChange() 
+	{
+		assertEquals("doc1", doc1.getName());
+	}
 }
