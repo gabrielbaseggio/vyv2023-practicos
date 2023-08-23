@@ -44,4 +44,13 @@ class PointTest {
 		assertEquals(p.getY(), -1);
 	}
 	
+	@Test
+	public void swap4() 
+	{
+		Point p = new Point(-1, 2);
+		p.swap();
+		assertEquals(p.getX(), 2);
+		assertEquals(p.getY(), -1);
+	}
+	
 }
