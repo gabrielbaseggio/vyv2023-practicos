@@ -46,7 +46,7 @@ public class Minefield {
 	 * @throws IllegalArgumentException when  x or y are invalid position on mineField 
 	 */
 	public int minedNeighbours(int x, int y) throws IllegalArgumentException{
-    	if(x < 0) 
+    	if(x < 0 || x > 7) 
     	{
     		throw new IllegalArgumentException("x out of range.");
     	}
