@@ -66,9 +66,9 @@ public class Point {
 	 * Intercambia los valores de la primera y segunda coordenadas del punto.
 	 */
 	public void swap() {
-		x = x+y;
-		y = x-y;
-		x = x+y; 
+		float temp = x;
+		x = y;
+		y = temp;
 	}
 	
 	
