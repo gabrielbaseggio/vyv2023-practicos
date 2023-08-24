@@ -31,6 +31,7 @@ public class PalindromeTest {
 				  ,new char [] {'a', 'b', 'b'}
 				  ,new char [] {'a', 'b', 'b', 'b'}
 				  ,new char [] {'n', 'o', 't'}
+				  ,new char [] {'a', 'a', 'b', 'p', 'a', 'a'}
 				);
 	}
 	
