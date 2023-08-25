@@ -64,4 +64,23 @@ public class BitSetTest {
 		set1.xor(set1);
 		Assertions.assertThat(set1).isEqualTo(emptySet);
 	}
+	
+	@Property
+	void
+	distributivityOfIntersectionOverUnion
+		(@ForAll("provider") BitSet a
+		,@ForAll("provider") BitSet b
+		,@ForAll("provider") BitSet c)
+	{
+		BitSet intersectionAB = (BitSet) a.clone();
+		intersectionAB.and(b);
+		BitSet intersectionAC = (BitSet) a.clone();
+		intersectionAC.and(c);
+		intersectionAB.or(intersectionAC);
+		
+		b.or(c);
+		a.and(b);
+		
+		Assertions.assertThat(a).isEqualTo(intersectionAB);
+	}
 }
