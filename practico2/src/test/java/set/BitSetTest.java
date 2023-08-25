@@ -55,4 +55,13 @@ public class BitSetTest {
 		set1.xor(set2);
 		Assertions.assertThat(set1).isEqualTo(temp);
 	}
+	
+	@Property
+	void
+	XORWithItself(@ForAll("provider") BitSet set1) 
+	{
+		BitSet emptySet = new BitSet();
+		set1.xor(set1);
+		Assertions.assertThat(set1).isEqualTo(emptySet);
+	}
 }
