@@ -83,4 +83,14 @@ public class BitSetTest {
 		
 		Assertions.assertThat(a).isEqualTo(intersectionAB);
 	}
+	
+	@Property
+	void
+	absorption(@ForAll("provider") BitSet a, @ForAll("provider") BitSet b) 
+	{
+		BitSet originalA = (BitSet) a.clone();
+		b.or(a);
+		a.and(b);
+		Assertions.assertThat(a).isEqualTo(originalA);
+	}
 }
