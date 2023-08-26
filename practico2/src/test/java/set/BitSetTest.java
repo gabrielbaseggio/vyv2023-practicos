@@ -1,8 +1,11 @@
 package set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Random;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import net.jqwik.api.*;
 
@@ -92,5 +95,25 @@ public class BitSetTest {
 		b.or(a);
 		a.and(b);
 		Assertions.assertThat(a).isEqualTo(originalA);
+	}
+	
+	@Test
+	void
+	intersectionWithItself() 
+	{
+		BitSet set      = new BitSet();
+		BitSet expected = (BitSet) set.clone();
+		set.and(set);
+		assertEquals(expected, set);
+	}
+	
+	@Test
+	void
+	unionWithItself() 
+	{
+		BitSet set      = new BitSet();
+		BitSet expected = (BitSet) set.clone();
+		set.or(set);
+		assertEquals(expected, set);
 	}
 }
