@@ -16,4 +16,14 @@ public class NodeCachingLinkedListTest {
 		int res = list.size();
 		assertEquals(0, res);
 	}
+	
+	@Test
+	void
+	testSizeAfterAddAnElement() throws InvariantViolated 
+	{
+		NodeCachingLinkedList list = new NodeCachingLinkedList();
+		list.addFirst(1);
+		int res = list.size();
+		assertEquals(1, res);
+	}
 }
