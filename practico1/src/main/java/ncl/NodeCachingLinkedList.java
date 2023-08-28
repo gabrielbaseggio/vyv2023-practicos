@@ -1,5 +1,6 @@
 package ncl;
 
+import myexceptions.InvariantViolated;
 
 /****************************************************************************
 Author: Juan Pablo Galeotti and Marcelo Frias, Relational Formal Methods 
@@ -39,11 +40,15 @@ public class NodeCachingLinkedList{
 
 	public static final int DEFAULT_MAXIMUM_CACHE_SIZE = 20;
 
-	public NodeCachingLinkedList(){
+	public NodeCachingLinkedList() throws InvariantViolated{
 		header = new LinkedListNode();
 		header.setValue(null);
 		header.setNext(header);
 		header.setPrevious(header);
+		if(!repOK()) 
+		{
+			throw new InvariantViolated();
+		}
 	}
 	
 	
@@ -61,10 +66,18 @@ public class NodeCachingLinkedList{
 
     
     /*Adds an element to the list**/
-    public void addFirst(Integer o) {
+    public void addFirst(Integer o) throws InvariantViolated {
         LinkedListNode newNode = createNode(o);
         addNode(newNode, header.getNext());
-
+        if(!repOK()) 
+		{
+			throw new InvariantViolated();
+		}
+    }
+    
+    public int size() 
+    {
+    	return size;
     }
 	
 	
@@ -171,14 +184,19 @@ public class NodeCachingLinkedList{
 
 	//-----------------------------------------------------------------------
 
-	public Integer removeIndex(int index) {
+	public Integer removeIndex(int index) throws InvariantViolated {
 		
 		Integer oldValue= null;
 		LinkedListNode node = getNode(index);
 		if(node!=null){
 			oldValue = node.getValue();
 			removeNode(node);
-		}	
+		}
+		
+		if(!repOK()) 
+		{
+			throw new InvariantViolated();
+		}
 		return oldValue;
 	}
 
@@ -229,8 +247,6 @@ public class NodeCachingLinkedList{
 		res= res + "]";
 	    return res;
 	}
-	
-	
 		  
 	/**
 	 * @Invariant 
@@ -249,11 +265,129 @@ public class NodeCachingLinkedList{
 	 *		(size == number of nodes in the list-1
 	 */
 	    public boolean repOK() {
-		    //TODO
-	        
-	        return true;
+		    if(this.header == null)
+		    {
+		    	return false;
+		    }
+		    
+		    if(this.header.getNext() == null)
+		    {
+		    	return false;
+		    }
+		    
+		    if(this.header.getPrevious() == null)
+		    {
+		    	return false;
+		    }
+		    
+		    if(this.size < 0 || this.size != countNodesInList()) 
+		    {
+		    	return false;
+		    }
+		    
+		    if(this.cacheSize > this.maximumCacheSize) 
+		    {
+		    	return false;
+		    }
+		    
+		    if(this.DEFAULT_MAXIMUM_CACHE_SIZE != 20) 
+		    {
+		    	return false;
+		    }
+		    
+		    if(cacheIsCyclic()) 
+		    {
+		    	return false;
+		    }
+		    
+		    if(this.cacheSize != countNodesInCache()) 
+		    {
+		    	return false;
+		    }
+		    
+		    if(!nodesInTheCacheHaveNeitherPreviousNorValue()) 
+		    {
+		    	return false;
+		    }
+		    
+		    if(!listDoesNotHaveNulls()) 
+		    {
+		    	return false;
+		    }
+		    
+		    return true;
+	    }
+	    
+	    private boolean listDoesNotHaveNulls() {
+	    	LinkedListNode node = header.getNext();
+	    	for(int i = 0; i < size; i++) 
+	    	{
+	    		if(node == null || node.getPrevious() == null
+	    						|| !node.getPrevious().getNext().equals(node)
+	    						|| node.getNext() == null
+	    						|| !node.getNext().getPrevious().equals(node)) 
+	    		{
+	    			return false;
+	    		}
+	    	}
+	    	return true;
 	    }
 
+
+		private boolean cacheIsCyclic() 
+		{
+			int count = 0;
+			LinkedListNode node = this.firstCachedNode;
+			while(node != null) 
+			{
+				count++;
+				node = node.getNext();
+				if(count > maximumCacheSize) 
+				{
+					return true;
+				}
+			}
+			return false;
+	    }
 		
+		private int countNodesInCache() 
+		{
+			int count = 0;
+			LinkedListNode node = this.firstCachedNode;
+			while(node != null) 
+			{
+				count++;
+				node = node.getNext();
+			}
+			return count;
+		}
+
+		private int countNodesInList() 
+	    {
+	    	int count = 0;
+	    	LinkedListNode node = this.header.getNext();
+	    	while(!node.equals(this.header)) 
+	    	{
+	    		count++;
+	    		node = node.getNext();
+	    	}
+	    	
+	    	return count;
+	    }
+		
+		private boolean nodesInTheCacheHaveNeitherPreviousNorValue() 
+		{
+			boolean bool = true;
+		    LinkedListNode node = this.firstCachedNode;
+		    while(node != null && bool) 
+		    {
+		    	bool = bool 
+		    			&& node.getPrevious() == null 
+		    			&& node.getValue() == null;
+		    	node = node.getNext();
+		    }
+		    
+		    return bool;
+		}
 
 }

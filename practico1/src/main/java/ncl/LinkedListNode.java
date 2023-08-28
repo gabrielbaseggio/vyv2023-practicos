@@ -1,7 +1,5 @@
 package ncl;
 
-
-
 /****************************************************************************
 Author: Juan Pablo Galeotti and Marcelo Frias, Relational Formal Methods 
 Group, University of Buenos Aires and Buenos Aires Institute of Technology,
