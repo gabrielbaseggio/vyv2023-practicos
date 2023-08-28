@@ -40,11 +40,17 @@ public class NodeCachingLinkedListPBT {
 	AfterRemovingAnElementTheSizeOfTheCacheIsIncreasedByOne(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
 	{
 		Assume.that(!list.isEmpty());
-		System.out.println(list);
 		int cacheSize = list.cacheSize();
-		System.out.println(cacheSize);
 		list.removeIndex(0);
-		System.out.println(list.cacheSize());
 		Assertions.assertThat(list.cacheSize()).isEqualTo(cacheSize + 1);
+	}
+	
+	@Property
+	void
+	AfterAddingAnElementTheSizeOfTheListIsIncreasedByOne(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
+	{
+		int size = list.size();
+		list.addFirst(0);
+		Assertions.assertThat(list.size()).isEqualTo(size + 1);
 	}
 }
