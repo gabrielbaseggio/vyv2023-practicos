@@ -73,4 +73,13 @@ public class NodeCachingLinkedListPBT {
 		list.addFirst(0);
 		assertTrue(list.cacheSize() == cacheSize || list.cacheSize() == cacheSize + 1);
 	}
+	
+	@Property
+	void
+	afterRemovingAnElementTheInvariantIsPreserved(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
+	{
+		Assume.that(!list.isEmpty());
+		list.removeIndex(0);
+		assertTrue(list.repOK());
+	}
 }
