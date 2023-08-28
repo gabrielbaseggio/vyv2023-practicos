@@ -11,11 +11,11 @@ import net.jqwik.api.*;
 
 public class BitSetTest {
 	
-	private static BitSet generateBitSet(int numElems) 
+	private static BitSet generateBitSet(int nElems) 
 	{
-		BitSet set = new BitSet(numElems);
+		BitSet set = new BitSet(nElems);
 		Random random = new Random();
-		for(int i = 0; i < numElems; i++) 
+		for(int i = 0; i < 64; i++) 
 		{
 			set.set(i, random.nextBoolean());
 		}
@@ -26,12 +26,14 @@ public class BitSetTest {
 	@Provide
 	private Arbitrary<BitSet> provider() 
 	{
-		return Arbitraries.create(() -> generateBitSet(30));
+		return Arbitraries.create(() -> generateBitSet(64));
 	}
 	
 	@Property(tries = 100)
 	void
-	testCommutativityOfIntersection(@ForAll("provider") BitSet set1, @ForAll("provider") BitSet set2) 
+	testCommutativityOfIntersection
+			(@ForAll("provider") BitSet set1
+			,@ForAll("provider") BitSet set2) 
 	{
 		BitSet temp = (BitSet) set1.clone();
 		set1.and(set2);
@@ -115,5 +117,35 @@ public class BitSetTest {
 		BitSet expected = (BitSet) set.clone();
 		set.or(set);
 		assertEquals(expected, set);
+	}
+	
+	@Property
+	void
+	testDeMorgan1(@ForAll("provider") BitSet a, @ForAll("provider") BitSet b)
+	{
+		BitSet cloneA = (BitSet) a.clone();
+		
+		a.and(b);
+		a.flip(0, 63);
+		
+		cloneA.flip(0, 63);
+		b.flip(0, 63);
+		cloneA.or(b);
+		Assertions.assertThat(a).isEqualTo(cloneA);
+	}
+	
+	@Property
+	void
+	testDeMorgan2(@ForAll("provider") BitSet a, @ForAll("provider") BitSet b)
+	{
+		BitSet cloneA = (BitSet) a.clone();
+		
+		a.or(b);
+		a.flip(0, 63);
+		
+		cloneA.flip(0, 63);
+		b.flip(0, 63);
+		cloneA.and(b);
+		Assertions.assertThat(a).isEqualTo(cloneA);
 	}
 }
