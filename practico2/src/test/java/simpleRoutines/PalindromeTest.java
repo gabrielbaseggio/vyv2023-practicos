@@ -22,11 +22,20 @@ class PalindromeTest {
 				);
 	}
 	
-	@Test
+	private static Stream<Arguments>
+	palindromeProvider() 
+	{
+		return Stream.of(
+				 Arguments.of(new char[] {'n','e','u','q','u','e','n'}, true)
+				,Arguments.of(new char[] {'n','e','u','q','w','e','n'}, false)
+				);
+	}
+	
+	@ParameterizedTest
+	@MethodSource("palindromeProvider")
 	void 
-	test() {
-		char [] a = {'n','e','u','q','u','e','n'};
-		assertTrue(SimpleRoutines.palindrome(a));
+	testPalindrome(char [] a, boolean expected) {
+		assertEquals(expected, SimpleRoutines.palindrome(a));
 		
 	}
 	
