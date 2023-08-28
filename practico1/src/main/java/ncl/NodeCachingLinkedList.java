@@ -247,6 +247,23 @@ public class NodeCachingLinkedList{
 		res= res + "]";
 	    return res;
 	}
+	
+	@Override
+	public boolean equals(Object other) 
+	{
+		if(other == null) { return false; }
+		if(other == this) {return true;}
+		if(this.getClass() != other.getClass()) { return false; }
+		NodeCachingLinkedList l = (NodeCachingLinkedList) other;
+		if(this.size != l.size) { return false; }
+		boolean bool = true;
+		for(int i = 0; i < size() && bool; i++) 
+		{
+			bool = bool && get(i) == l.get(i);
+		}
+		return bool;
+		
+	}
 		  
 	/**
 	 * @Invariant 

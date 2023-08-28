@@ -60,4 +60,15 @@ public class NodeCachingLinkedListTest {
 		Integer res = list.removeIndex(0);
 		assertEquals(expected, res);
 	}
+	
+	@Test
+	void
+	testAddingAndThenRemovingAnElementKeepsTheListIntact() throws InvariantViolated 
+	{
+		NodeCachingLinkedList list = new NodeCachingLinkedList();
+		NodeCachingLinkedList orig = new NodeCachingLinkedList();
+		list.addFirst(1);
+		list.removeIndex(0);
+		assertEquals(orig, list);
+	}
 }
