@@ -9,5 +9,6 @@ import org.junit.platform.suite.api.Suite;
 	 simpleRoutines.PalindromeTest.class
 	,simpleRoutines.LeapYearTest.class
 	,simpleRoutines.LargestTest.class
+	,simpleRoutines.OcurrencesCountTest.class
 })
 class AllTests {}
