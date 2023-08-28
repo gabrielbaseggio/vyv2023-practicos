@@ -41,7 +41,7 @@ public class SimpleRoutines {
 	* @return The largest number in the given array
 	*/
 	public static Integer largest(Integer[] list) { 
-		int index = 1;
+		int index = 0;
 		int max = Integer.MIN_VALUE;
 		while (index <= list.length-1) {
 			if (list[index] > max) {

@@ -5,5 +5,9 @@ import org.junit.platform.suite.api.Suite;
 
 
 @Suite
-@SelectClasses({simpleRoutines.PalindromeTest.class})
+@SelectClasses({
+	 simpleRoutines.PalindromeTest.class
+	,simpleRoutines.LeapYearTest.class
+	,simpleRoutines.LargestTest.class
+})
 class AllTests {}
