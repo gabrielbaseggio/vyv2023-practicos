@@ -82,4 +82,12 @@ public class NodeCachingLinkedListPBT {
 		list.removeIndex(0);
 		assertTrue(list.repOK());
 	}
+	
+	@Property
+	void
+	afterAddingAnElementTheInvariantIsPreserved(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
+	{
+		list.addFirst(0);
+		assertTrue(list.repOK());
+	}
 }
