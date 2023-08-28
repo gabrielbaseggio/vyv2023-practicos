@@ -37,4 +37,16 @@ public class NodeCachingLinkedListTest {
 		Integer res = list.get(0);
 		assertEquals(expected, res);
 	}
+	
+	@Test
+	void
+	testSizeAfterRemovingByIndex() throws InvariantViolated 
+	{
+		NodeCachingLinkedList list = new NodeCachingLinkedList();
+		Integer value = 1;
+		list.addFirst(value);
+		list.removeIndex(0);
+		int size = list.size();
+		assertEquals(0, size);
+	}
 }
