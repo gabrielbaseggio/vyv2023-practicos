@@ -90,4 +90,12 @@ public class NodeCachingLinkedListPBT {
 		list.addFirst(0);
 		assertTrue(list.repOK());
 	}
+	
+	@Property
+	void
+	invariantIsPreservedAtCreation() throws InvariantViolated
+	{
+		NodeCachingLinkedList list = new NodeCachingLinkedList();
+		assertTrue(list.repOK());
+	}
 }
