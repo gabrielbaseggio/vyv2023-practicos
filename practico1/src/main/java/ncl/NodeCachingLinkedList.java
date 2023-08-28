@@ -45,6 +45,7 @@ public class NodeCachingLinkedList{
 		header.setValue(null);
 		header.setNext(header);
 		header.setPrevious(header);
+		maximumCacheSize = DEFAULT_MAXIMUM_CACHE_SIZE;
 		if(!repOK()) 
 		{
 			throw new InvariantViolated();
@@ -151,6 +152,7 @@ public class NodeCachingLinkedList{
 	private void addNodeToCache(LinkedListNode node) {
 		if (isCacheFull()) {
 			// don't cache the node.
+			System.out.println("hello there 2");
 			return;
 		}       
 		// clear the node's contents and add it to the cache.
@@ -189,6 +191,7 @@ public class NodeCachingLinkedList{
 		Integer oldValue= null;
 		LinkedListNode node = getNode(index);
 		if(node!=null){
+			System.out.println("hello there 1");
 			oldValue = node.getValue();
 			removeNode(node);
 		}
@@ -405,6 +408,16 @@ public class NodeCachingLinkedList{
 		    }
 		    
 		    return bool;
+		}
+
+
+		public int cacheSize() {
+			return cacheSize;
+		}
+
+
+		public boolean isEmpty() {
+			return size == 0;
 		}
 
 }
