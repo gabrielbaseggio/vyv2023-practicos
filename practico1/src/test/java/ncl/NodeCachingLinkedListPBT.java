@@ -1,17 +1,21 @@
 package ncl;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Random;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 
 import myexceptions.InvariantViolated;
 import net.jqwik.api.*;
 
 public class NodeCachingLinkedListPBT {
 	
-	private static NodeCachingLinkedList generateList(int numElems) 
+	private NodeCachingLinkedList list = null;
+	
+	private NodeCachingLinkedList generateList(int numElems) 
 	{
-		NodeCachingLinkedList list = null;
 		try {
 			list = new NodeCachingLinkedList();
 			
@@ -27,6 +31,13 @@ public class NodeCachingLinkedListPBT {
 		}
 		
 		return list;
+	}
+	
+	@AfterEach
+	void
+	tearDown() throws InvariantViolated 
+	{
+		list.removeAll();
 	}
 	
 	@Provide
@@ -52,5 +63,14 @@ public class NodeCachingLinkedListPBT {
 		int size = list.size();
 		list.addFirst(0);
 		Assertions.assertThat(list.size()).isEqualTo(size + 1);
+	}
+	
+	@Property
+	void
+	AfterAddingAnElementTheSizeOfTheCacheIsDecreasedByAtMostOne(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
+	{
+		int cacheSize = list.cacheSize();
+		list.addFirst(0);
+		assertTrue(list.cacheSize() == cacheSize || list.cacheSize() == cacheSize + 1);
 	}
 }

@@ -420,4 +420,14 @@ public class NodeCachingLinkedList{
 			return size == 0;
 		}
 
+
+		public void removeAll() throws InvariantViolated {
+			int index = 0;
+			while(!isEmpty()) 
+			{
+				removeIndex(index);
+				index++;
+			}
+		}
+
 }
