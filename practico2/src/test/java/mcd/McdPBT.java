@@ -9,16 +9,16 @@ import net.jqwik.api.constraints.Positive;
 public class McdPBT {
 	@Property
 	void 
-	testSymmetry(@ForAll @Positive int n, @ForAll @Positive int m) 
+	commutativity(@ForAll @Positive int n, @ForAll @Positive int m) 
 	{
 		assertEquals(Mcd.mcd(n, m), Mcd.mcd(m, n));	
 	}
 	
 	@Property
-	void 
-	testProperty(@ForAll @Positive int n, @ForAll @Positive int m) 
+	void
+	associativity(@ForAll @Positive int a, @ForAll @Positive int b, @ForAll @Positive int c) 
 	{
-		assertEquals(Mcd.mcd(n, m), Mcd.mcd(Math.abs(n - m), m));
+		assertEquals(Mcd.mcd(a, Mcd.mcd(b, c)), Mcd.mcd(Mcd.mcd(a, b), c));
 	}
 	
 	@Property
@@ -29,10 +29,9 @@ public class McdPBT {
 	}
 	
 	@Property
-	void
-	associativity(@ForAll @Positive int a, @ForAll @Positive int b, @ForAll @Positive int c) 
+	void 
+	property(@ForAll @Positive int n, @ForAll @Positive int m) 
 	{
-		assertEquals(Mcd.mcd(a, Mcd.mcd(b, c)), Mcd.mcd(Mcd.mcd(a, b), c));
+		assertEquals(Mcd.mcd(n, m), Mcd.mcd(Math.abs(n - m), m));
 	}
-	
 }
