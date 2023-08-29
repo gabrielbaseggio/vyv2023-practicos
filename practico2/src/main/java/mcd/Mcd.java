@@ -4,11 +4,11 @@ public class Mcd {
 	
 	public static int mcd(int n, int m) 
 	{
-		if(m == 0) 
-		{
-			return n;
-		}
-		
-		return mcd(m, n % m);
+		while (m != 0) {
+            int temp = m;
+            m = n % m;
+            n = temp;
+        }
+        return n;
 	}
 }

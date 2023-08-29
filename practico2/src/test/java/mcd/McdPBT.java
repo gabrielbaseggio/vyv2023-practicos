@@ -4,27 +4,35 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import net.jqwik.api.*;
+import net.jqwik.api.constraints.Positive;
 
 public class McdPBT {
-	@Property(tries = 100)
-	void testSymmetry(@ForAll int n, @ForAll int m) 
+	@Property
+	void 
+	testSymmetry(@ForAll @Positive int n, @ForAll @Positive int m) 
 	{
-		Assume.that(n > 0 && m > 0);
 		assertEquals(Mcd.mcd(n, m), Mcd.mcd(m, n));	
 	}
 	
-	@Property(tries = 100)
-	void testProperty(@ForAll int n, @ForAll int m) 
+	@Property
+	void 
+	testProperty(@ForAll @Positive int n, @ForAll @Positive int m) 
 	{
-		Assume.that(n > 0 && m > 0);
 		assertEquals(Mcd.mcd(n, m), Mcd.mcd(Math.abs(n - m), m));
 	}
 	
 	@Property
 	void
-	testIdempotence(@ForAll int n) 
+	idempotence(@ForAll @Positive int n) 
 	{
-		Assume.that(n > 0);
 		assertEquals(n, Mcd.mcd(n,n));
 	}
+	
+	@Property
+	void
+	associativity(@ForAll @Positive int a, @ForAll @Positive int b, @ForAll @Positive int c) 
+	{
+		assertEquals(Mcd.mcd(a, Mcd.mcd(b, c)), Mcd.mcd(Mcd.mcd(a, b), c));
+	}
+	
 }
