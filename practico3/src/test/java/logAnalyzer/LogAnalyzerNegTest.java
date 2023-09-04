@@ -25,4 +25,14 @@ public class LogAnalyzerNegTest {
 		assertThrows(IllegalArgumentException.class, 
 				() -> logAnalyzer.IsValidLogFileName(new String()));
 	}
+	
+	@Test
+	void
+	testIsValidLogFileName3() 
+	{
+		IExtensionManager manager = EasyMock.createMock(IExtensionManager.class);
+		LogAnalyzer logAnalyzer   = new LogAnalyzer(manager);
+		assertThrows(IllegalArgumentException.class, 
+				() -> logAnalyzer.IsValidLogFileName("mytxt"));
+	}
 }
