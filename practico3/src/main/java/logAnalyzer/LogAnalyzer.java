@@ -1,4 +1,5 @@
 /*Here’s the scenario. Your company has many internal products 
+ * 
 it uses to monitor its applications at customer sites. 
  * All these products write log files and place them in a special directory. 
  * The log files are written in a proprietary format that your company has 
