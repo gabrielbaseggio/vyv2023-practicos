@@ -21,5 +21,4 @@ public class IPBlacklistTest {
     }
  
     //Write tests here
-    
 }

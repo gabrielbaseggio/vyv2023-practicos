@@ -22,7 +22,7 @@ public class LogAnalyzer {
 	    }
 
         public boolean IsValidLogFileName(String fileName){	
-        	if(fileName.isEmpty() || fileName ==null)
+        	if(fileName ==null || fileName.isEmpty())
         		throw new  IllegalArgumentException();
         	if (!fileName.contains(".")) 
         		throw new  IllegalArgumentException();
