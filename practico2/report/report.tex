@@ -47,10 +47,19 @@
 \\Block 1: $m2 \geq 1 \land m2 \leq 12$
 \\Block 2: $m2 < 1$
 \\Block 3: $m2 > 12$
-\item Characteristic 10: "relation of the year with respecto to the range [1..10000]"
-\\Block 1: $y \geq 1 \land y \leq 10000$
-\\Block 2: $y < 1$
-\\Block 3: $y > 10000$
+\item Characteristic 10: "relation of the year with respec to the range [1..10000]"
+\\Block 01: $y \in [1..1000]$
+\\Block 02: $y \in [1001..2000]$
+\\Block 03: $y \in [2001..3000]$
+\\Block 04: $y \in [3001..4000]$
+\\Block 05: $y \in [4001..5000]$
+\\Block 06: $y \in [5001..6000]$
+\\Block 07: $y \in [6001..7000]$
+\\Block 08: $y \in [7001..8000]$
+\\Block 09: $y \in [8001..9000]$
+\\Block 10: $y \in [9001..10000]$
+\\Block 11: $y < 1$
+\\Block 12: $y > 10000$
 \end{itemize}
 
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
@@ -75,17 +84,17 @@ t & f & t & $d1 < d2$ & $m1 > m2$ & $d1 \in [1..31]$ & $m1 \in [1..12]$ & $d2 \i
 \hline
 t & f & t & $d1 < d2$ & $m1 < m2$ & $d1 < 1$ & $m1 \in [1..12]$ & $d2 \in [1..31]$ & $m2 \in [1..12]$ & $y \in [1..10000]$ \\
 \hline
-t & f & t & $d1 < d2$ & $m1 < m2$ & $d1 > 31$ & $m1 \in [1..12]$ & $d2 \in [1..31]$ & $m2 \in [1..12]$ & $y \in [1..10000]$ \\
+t & f & t & $d1 > d2$ & $m1 < m2$ & $d1 > 31$ & $m1 \in [1..12]$ & $d2 \in [1..31]$ & $m2 \in [1..12]$ & $y \in [1..10000]$ \\
 \hline
 t & f & t & $d1 < d2$ & $m1 < m2$ & $d1 \in [1..31]$ & $m1 < 1$ & $d2 \in [1..31]$ & $m2 \in [1..12]$ & $y \in [1..10000]$ \\
 \hline
-t & f & t & $d1 < d2$ & $m1 < m2$ & $d1 \in [1..31]$ & $m1 > 12$ & $d2 \in [1..31]$ & $m2 \in [1..12]$ & $y \in [1..10000]$ \\
+t & f & t & $d1 < d2$ & $m1 > m2$ & $d1 \in [1..31]$ & $m1 > 12$ & $d2 \in [1..31]$ & $m2 \in [1..12]$ & $y \in [1..10000]$ \\
 \hline
-t & t & f & $d1 < d2$ & $m1 < m2$ & $d1 \in [1..31]$ & $m1 \in [1..12]$ & $d2 < 1$ & $m2 \in [1..12]$ & $y \in [1..10000]$ \\
+t & t & f & $d1 > d2$ & $m1 < m2$ & $d1 \in [1..31]$ & $m1 \in [1..12]$ & $d2 < 1$ & $m2 \in [1..12]$ & $y \in [1..10000]$ \\
 \hline
 t & t & f & $d1 < d2$ & $m1 < m2$ & $d1 \in [1..31]$ & $m1 \in [1..12]$ & $d2 > 31$ & $m2 \in [1..12]$ & $y \in [1..10000]$ \\
 \hline
-t & t & f & $d1 < d2$ & $m1 < m2$ & $d1 \in [1..31]$ & $m1 \in [1..12]$ & $d2 \in [1..31]$ & $m2 < 1$ & $y \in [1..10000]$ \\
+t & t & f & $d1 < d2$ & $m1 > m2$ & $d1 \in [1..31]$ & $m1 \in [1..12]$ & $d2 \in [1..31]$ & $m2 < 1$ & $y \in [1..10000]$ \\
 \hline
 t & t & f & $d1 < d2$ & $m1 < m2$ & $d1 \in [1..31]$ & $m1 \in [1..12]$ & $d2 \in [1..31]$ & $m2 > 12$ & $y \in [1..10000]$ \\
 \hline

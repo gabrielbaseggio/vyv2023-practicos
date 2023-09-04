@@ -28,7 +28,8 @@ public class Cal {
 			throw new IllegalArgumentException();
 		}
 		int numDays;
-
+		if (month1 > month2)
+			throw new IllegalArgumentException();
 		if (month2 == month1) // in the same month
 			numDays  = day2 - day1;
 		else
@@ -66,7 +67,7 @@ public class Cal {
 			return false;
 		if( month==2 && !leap(year) && day > 28)
 			return false;
-		if(year<1900)
+		if(year<1 || year > 10000)
 			return false;
 		return true;
 	}
@@ -81,6 +82,7 @@ public class Cal {
 
 	public /*@ pure @*/ static boolean leap(int a) {
 		boolean b = false;
+		
 		if ((a%4==0) && (a%100!= 0))
 				b = true;
 		if(a%400==0)

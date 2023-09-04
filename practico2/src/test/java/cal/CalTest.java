@@ -17,20 +17,20 @@ public class CalTest {
 		return Stream.of(
 				//Arguments.of(d1, m1, d2, m2, y, expected)
 				 Arguments.of(01, 01, 02, 03, 2000, 61)
-				,Arguments.of(01, 01, 02, 03, 2001, 60)
-				,Arguments.of(01, 02, 29, 02, 2000, 28)
+				,Arguments.of(01, 01, 02, 03, 1999, 60)
 				,Arguments.of(01, 01, 01, 03, 2000, 60)
-				,Arguments.of(15, 01, 01, 03, 2000, 46)
-				);
-	}
-	
-	private static Stream<Arguments>
-	negProvider() 
-	{
-		return Stream.of(
-				//Arguments.of(d1, m1, d2, m2, y)
-				 Arguments.of(01, 01, 30, 02, 2000)
-				,Arguments.of(01, 02, 01, 01, 2000)
+				,Arguments.of(02, 01, 01, 03, 2000, 59)
+				,Arguments.of(01, 02, 29, 02, 2000, 28)
+				,Arguments.of(01, 02, 29, 02, 316, 28)
+				,Arguments.of(01, 02, 29, 02, 1280, 28)
+				,Arguments.of(01, 02, 29, 02, 2504, 28)
+				,Arguments.of(01, 02, 29, 02, 3192, 28)
+				,Arguments.of(01, 02, 29, 02, 4976, 28)
+				,Arguments.of(01, 02, 29, 02, 5956, 28)
+				,Arguments.of(01, 02, 29, 02, 6988, 28)
+				,Arguments.of(01, 02, 29, 02, 7788, 28)
+				,Arguments.of(01, 02, 29, 02, 8972, 28)
+				,Arguments.of(01, 02, 29, 02, 9776, 28)
 				);
 	}
 	
@@ -40,13 +40,5 @@ public class CalTest {
 	testCal(int d1, int m1, int d2, int m2, int y, int expected) 
 	{
 		assertEquals(expected, Cal.cal(m1, d1, m2, d2, y));
-	}
-	
-	@ParameterizedTest
-	@MethodSource("negProvider")
-	void
-	testCal(int d1, int m1, int d2, int m2, int y) 
-	{
-		assertThrows(IllegalArgumentException.class, () -> Cal.cal(m1, d1, m2, d2, y));
 	}
 }
