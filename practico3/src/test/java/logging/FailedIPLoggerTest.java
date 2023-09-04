@@ -51,4 +51,21 @@ public class FailedIPLoggerTest {
     	
     	verify(service);
     }
+    
+    @Test
+    void
+    loginFailedTwice() 
+    {
+    	String ip       = "192.186.0.236";
+    	String user     = "sirgabriel";
+    	String password = "12345";
+    	String passwordHash = Utils.getPasswordHashMD5(password);
+    	expect(service.login(ip, user, passwordHash)).andReturn(false);
+    	expect(service.login(ip, user, passwordHash)).andReturn(false);
+    	replay(service);
+    	logger.login(ip, user, password);
+    	logger.login(ip, user, password);
+    	assertTrue(logger.loginFailed(ip));
+    	verify(service);
+    }
 }
