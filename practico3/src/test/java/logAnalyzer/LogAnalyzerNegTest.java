@@ -2,37 +2,33 @@ package logAnalyzer;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.stream.Stream;
+
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class LogAnalyzerNegTest {
-	@Test
-	void
-	testIsValidLogFileName1() 
+	
+	private static Stream<String>
+	provider() 
 	{
-		IExtensionManager manager = EasyMock.createMock(IExtensionManager.class);
-		LogAnalyzer logAnalyzer   = new LogAnalyzer(manager);
-		assertThrows(IllegalArgumentException.class, 
-				() -> logAnalyzer.IsValidLogFileName(null));
+		return Stream.of(
+				 null
+				,new String()
+				,"mytxt"
+				);
 	}
 	
-	@Test
+	@ParameterizedTest
+	@MethodSource("provider")
 	void
-	testIsValidLogFileName2() 
+	testIsValidLogFileName(String fileName) 
 	{
 		IExtensionManager manager = EasyMock.createMock(IExtensionManager.class);
 		LogAnalyzer logAnalyzer   = new LogAnalyzer(manager);
 		assertThrows(IllegalArgumentException.class, 
-				() -> logAnalyzer.IsValidLogFileName(new String()));
-	}
-	
-	@Test
-	void
-	testIsValidLogFileName3() 
-	{
-		IExtensionManager manager = EasyMock.createMock(IExtensionManager.class);
-		LogAnalyzer logAnalyzer   = new LogAnalyzer(manager);
-		assertThrows(IllegalArgumentException.class, 
-				() -> logAnalyzer.IsValidLogFileName("mytxt"));
+				() -> logAnalyzer.IsValidLogFileName(fileName));
 	}
 }
