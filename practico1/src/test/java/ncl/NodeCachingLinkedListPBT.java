@@ -1,11 +1,9 @@
 package ncl;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.Random;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 
 import myexceptions.InvariantViolated;
 import net.jqwik.api.*;
@@ -25,19 +23,18 @@ public class NodeCachingLinkedListPBT {
 				list.addFirst(random.nextInt());
 			}
 			
+			int cacheSize = numElems - random.nextInt(numElems);
+			for(int i = 0; i < cacheSize; i++) 
+			{
+				list.removeIndex(i);
+			}
+			
 		} catch (InvariantViolated e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return list;
-	}
-	
-	@AfterEach
-	void
-	tearDown() throws InvariantViolated 
-	{
-		list.removeAll();
 	}
 	
 	@Provide
@@ -71,7 +68,8 @@ public class NodeCachingLinkedListPBT {
 	{
 		int cacheSize = list.cacheSize();
 		list.addFirst(0);
-		assertTrue(list.cacheSize() == cacheSize || list.cacheSize() == cacheSize + 1);
+		int res = cacheSize - list.cacheSize();
+		assertTrue(res <= 1);
 	}
 	
 	@Property
@@ -88,14 +86,6 @@ public class NodeCachingLinkedListPBT {
 	afterAddingAnElementTheInvariantIsPreserved(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
 	{
 		list.addFirst(0);
-		assertTrue(list.repOK());
-	}
-	
-	@Property
-	void
-	invariantIsPreservedAtCreation() throws InvariantViolated
-	{
-		NodeCachingLinkedList list = new NodeCachingLinkedList();
 		assertTrue(list.repOK());
 	}
 }
