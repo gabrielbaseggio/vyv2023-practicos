@@ -12,6 +12,10 @@ public class IPBlacklistTest {
 	
     private IPBlacklist ipblacklist;
     private LoginService service;
+    private String ip       = "192.186.0.236";
+	private String user     = "sirgabriel";
+	private String password = "12345";
+	private String passwordHash = Utils.getPasswordHashMD5(password);
 
     @BeforeEach
     public  void setUp() {
@@ -25,13 +29,7 @@ public class IPBlacklistTest {
     void
     ipWasAddedToTheBlacklist() 
     {
-    	String ip       = "192.186.0.236";
-    	String user     = "sirgabriel";
-    	String password = "12345";
-    	String passwordHash = Utils.getPasswordHashMD5(password);
-    	expect(service.login(ip, user, passwordHash)).andReturn(false);
-    	expect(service.login(ip, user, passwordHash)).andReturn(false);
-    	expect(service.login(ip, user, passwordHash)).andReturn(false);
+    	expect(service.login(ip, user, passwordHash)).andReturn(false).times(3);
     	replay(service);
     	
     	assertFalse(ipblacklist.login(ip, user, password));
@@ -46,12 +44,7 @@ public class IPBlacklistTest {
     void
     ipHasNotBeenAddedToTheBlackListYet() 
     {
-    	String ip       = "192.186.0.236";
-    	String user     = "sirgabriel";
-    	String password = "12345";
-    	String passwordHash = Utils.getPasswordHashMD5(password);
-    	expect(service.login(ip, user, passwordHash)).andReturn(false);
-    	expect(service.login(ip, user, passwordHash)).andReturn(false);
+    	expect(service.login(ip, user, passwordHash)).andReturn(false).times(2);
     	replay(service);
     	
     	assertFalse(ipblacklist.login(ip, user, password));
@@ -65,10 +58,6 @@ public class IPBlacklistTest {
     void
     testGetLastip() 
     {
-    	String ip       = "192.186.0.236";
-    	String user     = "sirgabriel";
-    	String password = "12345";
-    	String passwordHash = Utils.getPasswordHashMD5(password);
     	expect(service.login(ip, user, passwordHash)).andReturn(true);
     	replay(service);
     	ipblacklist.login(ip, user, password);
@@ -80,13 +69,7 @@ public class IPBlacklistTest {
     void
     loginAfterTheIPWasAddedToTheBlackList() 
     {
-    	String ip       = "192.186.0.236";
-    	String user     = "sirgabriel";
-    	String password = "12345";
-    	String passwordHash = Utils.getPasswordHashMD5(password);
-    	expect(service.login(ip, user, passwordHash)).andReturn(false);
-    	expect(service.login(ip, user, passwordHash)).andReturn(false);
-    	expect(service.login(ip, user, passwordHash)).andReturn(false);
+    	expect(service.login(ip, user, passwordHash)).andReturn(false).times(3);
     	replay(service);
     	ipblacklist.login(ip, user, password);
     	ipblacklist.login(ip, user, password);
