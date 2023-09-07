@@ -5,7 +5,6 @@ import java.util.Random;
 
 import org.assertj.core.api.Assertions;
 
-import myexceptions.InvariantViolated;
 import net.jqwik.api.*;
 
 public class NodeCachingLinkedListPBT {
@@ -14,24 +13,18 @@ public class NodeCachingLinkedListPBT {
 	
 	private NodeCachingLinkedList generateList(int numElems) 
 	{
-		try {
-			list = new NodeCachingLinkedList();
-			
-			Random random = new Random();
-			for(int i = 0; i < numElems; i++) 
-			{
-				list.addFirst(random.nextInt());
-			}
-			
-			int cacheSize = numElems - random.nextInt(numElems);
-			for(int i = 0; i < cacheSize; i++) 
-			{
-				list.removeIndex(i);
-			}
-			
-		} catch (InvariantViolated e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		list = new NodeCachingLinkedList();
+		
+		Random random = new Random();
+		for(int i = 0; i < numElems; i++) 
+		{
+			list.addFirst(random.nextInt());
+		}
+		
+		int cacheSize = numElems - random.nextInt(numElems);
+		for(int i = 0; i < cacheSize; i++) 
+		{
+			list.removeIndex(i);
 		}
 		
 		return list;
@@ -45,7 +38,7 @@ public class NodeCachingLinkedListPBT {
 	
 	@Property
 	void
-	AfterRemovingAnElementTheSizeOfTheCacheIsIncreasedByOne(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
+	AfterRemovingAnElementTheSizeOfTheCacheIsIncreasedByOne(@ForAll("provider") NodeCachingLinkedList list) 
 	{
 		Assume.that(!list.isEmpty());
 		int cacheSize = list.cacheSize();
@@ -55,7 +48,7 @@ public class NodeCachingLinkedListPBT {
 	
 	@Property
 	void
-	AfterAddingAnElementTheSizeOfTheListIsIncreasedByOne(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
+	AfterAddingAnElementTheSizeOfTheListIsIncreasedByOne(@ForAll("provider") NodeCachingLinkedList list) 
 	{
 		int size = list.size();
 		list.addFirst(0);
@@ -64,7 +57,7 @@ public class NodeCachingLinkedListPBT {
 	
 	@Property
 	void
-	AfterAddingAnElementTheSizeOfTheCacheIsDecreasedByAtMostOne(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
+	AfterAddingAnElementTheSizeOfTheCacheIsDecreasedByAtMostOne(@ForAll("provider") NodeCachingLinkedList list) 
 	{
 		int cacheSize = list.cacheSize();
 		list.addFirst(0);
@@ -74,7 +67,7 @@ public class NodeCachingLinkedListPBT {
 	
 	@Property
 	void
-	afterRemovingAnElementTheInvariantIsPreserved(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
+	afterRemovingAnElementTheInvariantIsPreserved(@ForAll("provider") NodeCachingLinkedList list) 
 	{
 		Assume.that(!list.isEmpty());
 		list.removeIndex(0);
@@ -83,7 +76,7 @@ public class NodeCachingLinkedListPBT {
 	
 	@Property
 	void
-	afterAddingAnElementTheInvariantIsPreserved(@ForAll("provider") NodeCachingLinkedList list) throws InvariantViolated 
+	afterAddingAnElementTheInvariantIsPreserved(@ForAll("provider") NodeCachingLinkedList list) 
 	{
 		list.addFirst(0);
 		assertTrue(list.repOK());

@@ -2,24 +2,22 @@ package ncl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-
-import myexceptions.InvariantViolated;
 
 public class NodeCachingLinkedListTest {
 	@Test
 	void
-	testEmptyList() throws InvariantViolated 
+	testEmptyList() 
 	{
 		NodeCachingLinkedList list = new NodeCachingLinkedList();
-		int res = list.size();
-		assertEquals(0, res);
+		assertTrue(list.isEmpty());
 	}
 	
 	@Test
 	void
-	testSizeAfterAddAnElement() throws InvariantViolated 
+	testSizeAfterAddAnElement() 
 	{
 		NodeCachingLinkedList list = new NodeCachingLinkedList();
 		list.addFirst(1);
@@ -29,7 +27,7 @@ public class NodeCachingLinkedListTest {
 	
 	@Test
 	void
-	testGetAnElementAfterAddingIt() throws InvariantViolated 
+	testGetAnElementAfterAddingIt() 
 	{
 		NodeCachingLinkedList list = new NodeCachingLinkedList();
 		Integer expected = 1;
@@ -40,7 +38,7 @@ public class NodeCachingLinkedListTest {
 	
 	@Test
 	void
-	testSizeAfterRemovingByIndex() throws InvariantViolated 
+	testSizeAfterRemovingByIndex() 
 	{
 		NodeCachingLinkedList list = new NodeCachingLinkedList();
 		Integer value = 1;
@@ -52,7 +50,7 @@ public class NodeCachingLinkedListTest {
 	
 	@Test
 	void
-	testValueAfterRemovingByIndex() throws InvariantViolated 
+	testValueAfterRemovingByIndex() 
 	{
 		NodeCachingLinkedList list = new NodeCachingLinkedList();
 		Integer expected = 1;
@@ -63,12 +61,64 @@ public class NodeCachingLinkedListTest {
 	
 	@Test
 	void
-	testAddingAndThenRemovingAnElementKeepsTheListIntact() throws InvariantViolated 
+	testAddingAndThenRemovingAnElementKeepsTheListIntact() 
 	{
 		NodeCachingLinkedList list = new NodeCachingLinkedList();
 		NodeCachingLinkedList orig = new NodeCachingLinkedList();
 		list.addFirst(1);
 		list.removeIndex(0);
 		assertEquals(orig, list);
+	}
+	
+	@Test
+	void
+	testGet1() 
+	{
+		NodeCachingLinkedList list = new NodeCachingLinkedList();
+		assertThrows(IllegalArgumentException.class, () -> list.get(-1));
+	}
+	
+	@Test
+	void
+	testGet2() 
+	{
+		NodeCachingLinkedList list = new NodeCachingLinkedList();
+		assertThrows(IllegalArgumentException.class, () -> list.get(0));
+	}
+	
+	@Test
+	void
+	testRemoveIndex() 
+	{
+		NodeCachingLinkedList list = new NodeCachingLinkedList();
+		assertEquals(null, list.removeIndex(-1));
+	}
+	
+	@Test
+	void
+	cacheIsFullTest() 
+	{
+		NodeCachingLinkedList list = new NodeCachingLinkedList();
+		addNTimes(21, 0, list);
+		removeFstNTimes(20, list);
+		int cacheSize = list.cacheSize();
+		list.removeIndex(0);
+		assertEquals(cacheSize, list.cacheSize());
+		assertTrue(list.isEmpty());
+	}
+
+	private void removeFstNTimes(int times, NodeCachingLinkedList list) {
+		for(int i = 0; i < times; i++) 
+		{
+			list.removeIndex(0);
+		}
+	}
+
+	private void 
+	addNTimes(int times, int value, NodeCachingLinkedList list) {
+		for(int i = 0; i < times; i++) 
+		{
+			list.addFirst(value);
+		}
 	}
 }

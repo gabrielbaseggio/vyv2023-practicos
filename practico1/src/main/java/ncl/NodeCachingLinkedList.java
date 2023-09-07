@@ -1,7 +1,5 @@
 package ncl;
 
-import myexceptions.InvariantViolated;
-
 /****************************************************************************
 Author: Juan Pablo Galeotti and Marcelo Frias, Relational Formal Methods 
 Group, University of Buenos Aires and Buenos Aires Institute of Technology,
@@ -40,16 +38,12 @@ public class NodeCachingLinkedList{
 
 	public static final int DEFAULT_MAXIMUM_CACHE_SIZE = 20;
 
-	public NodeCachingLinkedList() throws InvariantViolated{
+	public NodeCachingLinkedList() {
 		header = new LinkedListNode();
 		header.setValue(null);
 		header.setNext(header);
 		header.setPrevious(header);
 		maximumCacheSize = DEFAULT_MAXIMUM_CACHE_SIZE;
-		if(!repOK()) 
-		{
-			throw new InvariantViolated();
-		}
 	}
 	
 	
@@ -67,13 +61,9 @@ public class NodeCachingLinkedList{
 
     
     /*Adds an element to the list**/
-    public void addFirst(Integer o) throws InvariantViolated {
+    public void addFirst(Integer o) {
         LinkedListNode newNode = createNode(o);
         addNode(newNode, header.getNext());
-        if(!repOK()) 
-		{
-			throw new InvariantViolated();
-		}
     }
     
     public int size() 
@@ -185,18 +175,13 @@ public class NodeCachingLinkedList{
 
 	//-----------------------------------------------------------------------
 
-	public Integer removeIndex(int index) throws InvariantViolated {
+	public Integer removeIndex(int index) {
 		
 		Integer oldValue= null;
 		LinkedListNode node = getNode(index);
 		if(node!=null){
 			oldValue = node.getValue();
 			removeNode(node);
-		}
-		
-		if(!repOK()) 
-		{
-			throw new InvariantViolated();
 		}
 		return oldValue;
 	}
@@ -416,16 +401,6 @@ public class NodeCachingLinkedList{
 
 		public boolean isEmpty() {
 			return size == 0;
-		}
-
-
-		public void removeAll() throws InvariantViolated {
-			int index = 0;
-			while(!isEmpty()) 
-			{
-				removeIndex(index);
-				index++;
-			}
 		}
 
 }
