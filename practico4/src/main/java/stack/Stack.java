@@ -8,7 +8,7 @@ package stack;
  * @author Vale
  * @version 2021
  */
-public interface stack<T> {
+public interface Stack<T> {
 
 	
 		/** 
