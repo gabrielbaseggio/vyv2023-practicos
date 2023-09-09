@@ -137,10 +137,10 @@
             
             <configuration>
        		 <targetClasses>
-            	<param>simpleRoutines.SimpleRoutines</param>
+            	<!--param>simpleRoutines.SimpleRoutines</param-->
         	</targetClasses>
         	<targetTests>
-            	<param>simpleRoutines.AllTests</param>
+            	<!--param>simpleRoutines.AllTests</param-->
         	</targetTests>
    			 </configuration>
             
