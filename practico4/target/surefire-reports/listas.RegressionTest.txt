@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: listas.RegressionTest
+-------------------------------------------------------------------------------
+Tests run: 5388, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.622 sec - in listas.RegressionTest

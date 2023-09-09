@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Set.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">practico4-2023</a> &gt; <a href="index.source.html" class="el_package">set</a> &gt; <span class="el_source">Set.java</span></div><h1>Set.java</h1><pre class="source lang-java linenums">package set;
+
+import java.util.Collection;
+import java.util.LinkedList;
+
+
+public class Set{
+
+	   
+		/*
+		 * almacena de forma ordenada los elementos del conjunto.
+		 */
+		private LinkedList&lt;Integer&gt; elements;
+		
+		
+		/*
+		 * Cantidad de  elementos presentes en el conjunto
+		 */
+		private int size;
+		 
+		
+<span class="nc" id="L22">		public Set() {</span>
+<span class="nc" id="L23">			elements = new LinkedList&lt;Integer&gt;();</span>
+<span class="nc" id="L24">			size = 0;</span>
+<span class="nc" id="L25">		}</span>
+		
+		
+<span class="nc" id="L28">		public Set(Collection&lt;Integer&gt; s) {</span>
+<span class="nc" id="L29">			this.elements = new LinkedList&lt;Integer&gt;();</span>
+<span class="nc" id="L30">			this.size = 0;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">			for(Integer e:s) {</span>
+<span class="nc" id="L32">				this.add(e); </span>
+<span class="nc" id="L33">			}</span>
+<span class="nc" id="L34">		}</span>
+		
+		public int size() {
+<span class="nc" id="L37">			return size;</span>
+		}
+		
+		public boolean isEmpty() {
+<span class="nc bnc" id="L41" title="All 2 branches missed.">			return size() == 0;</span>
+		}
+
+		/* Intersección entre dos conjuntos
+		 * @param s conjunto que se quiere intersecar con el conjunto target
+		 * @return intersección entre el conjunto dado y el conjunto target.
+		 * @throw IllegalArgumentException cuando el parámetro es null
+		 */
+		public Set intersect(Set s) throws IllegalArgumentException {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">			if(s==null)</span>
+<span class="nc" id="L51">				throw new IllegalArgumentException();</span>
+			
+<span class="nc" id="L53">			Set res = new Set();</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">		    for (Integer e : elements) {</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">		        if (s.belongs(e)) {</span>
+<span class="nc" id="L56">		            res.add(e);</span>
+		        }
+<span class="nc" id="L58">		    }</span>
+<span class="nc" id="L59">		    return res;</span>
+		}
+		
+
+		/*Agrega un nuevo elemento al conjunto
+		 *@param e elemento que se quiere  agregar al conjunto
+		 *@return true si el elemento se agregó al conjunto, false en el caso
+		 *en donde e ya pertenece al conjunto
+		 *@throw IllegalArgumentException cuando el parámetro es null
+		 */
+		public boolean add(Integer e) throws IllegalArgumentException {
+<span class="nc bnc" id="L70" title="All 2 branches missed.">			if(e==null)</span>
+<span class="nc" id="L71">				throw new IllegalArgumentException();</span>
+			
+<span class="nc bnc" id="L73" title="All 2 branches missed.">			if (belongs(e))</span>
+<span class="nc" id="L74">				return false;</span>
+
+<span class="nc" id="L76">			int i = 0;</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">			while(i&lt;size()){</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">				if(elements.get(i).compareTo(e)&gt;=0){</span>
+<span class="nc" id="L79">					break;</span>
+				}
+<span class="nc" id="L81">				i++;</span>
+			}
+<span class="nc" id="L83">			elements.add(i, e);</span>
+<span class="nc" id="L84">			size++;</span>
+			
+<span class="nc" id="L86">			return true;</span>
+		}
+		
+		
+
+		/* Unión entre dos conjuntos
+		 * @param s conjunto que se quiere unir al  conjunto target
+		 * @return union entre el conjunto dado y el conjunto target.
+		 * @throw IllegalArgumentException cuando el parámetro es null
+		 */
+		public Set union(Set s) throws IllegalArgumentException {
+<span class="nc bnc" id="L97" title="All 2 branches missed.">			if(s==null)</span>
+<span class="nc" id="L98">				throw new IllegalArgumentException();</span>
+			
+<span class="nc" id="L100">			Set res = new Set();</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">	        for (Integer e : this.elements)</span>
+<span class="nc" id="L102">	            res.add(e);</span>
+	        
+<span class="nc bnc" id="L104" title="All 2 branches missed.">	        for (Integer e : s.elements)</span>
+<span class="nc" id="L105">	            res.add(e);</span>
+	        
+<span class="nc" id="L107">	        return res;</span>
+		}
+
+			
+		
+		/* @param o elemento que se busca en el conjunto
+		 * @return True si el elemento pertenece al conjunto, false en otro caso
+		 * @throw IllegalArgumentException cuando el parámetro es null
+		 */
+		public boolean belongs(Integer o) throws IllegalArgumentException {
+<span class="nc bnc" id="L117" title="All 2 branches missed.">			if(o==null)</span>
+<span class="nc" id="L118">				throw new IllegalArgumentException();</span>
+
+<span class="nc bnc" id="L120" title="All 2 branches missed.">			for (int i=1; i&lt; size(); i++){</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">				if(elements.get(i).equals(o)){</span>
+<span class="nc" id="L122">					return true;</span>
+				}
+			}
+<span class="nc" id="L125">			return false;</span>
+		}
+
+		
+
+
+		/*
+		 * Borra un elemento del conjunto
+		 * @param o elemento que se debe borrar del conjunto
+		 * @return true si efectivamente el elemento fue eliminado, false en otro caso
+		 * @throw IllegalArgumentException cuando el parámetro es null
+		 */
+		public boolean remove(Integer o) throws IllegalArgumentException {
+<span class="nc bnc" id="L138" title="All 2 branches missed.">			if(o==null)</span>
+<span class="nc" id="L139">				throw new IllegalArgumentException();</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">			if (!belongs(o))</span>
+<span class="nc" id="L141">				return false;</span>
+
+<span class="nc bnc" id="L143" title="All 2 branches missed.">			for (int i=0; i&lt;= size(); i++){</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">				if(elements.get(i).equals(o)){</span>
+<span class="nc" id="L145">					elements.remove(i);</span>
+<span class="nc" id="L146">					size--;</span>
+<span class="nc" id="L147">					return true;</span>
+				}
+			}
+<span class="nc" id="L150">			return false;</span>
+		}
+	
+		/*
+		 * Borra todos los elementos del conjunto.
+		 */
+		public void clear() {
+<span class="nc bnc" id="L157" title="All 2 branches missed.">			for(Integer e : elements)</span>
+<span class="nc" id="L158">				remove(e);</span>
+<span class="nc" id="L159">		}</span>
+		
+		
+		
+		/* Metodo que strictlySorted
+		 * @return boolean si el set esta ordenado y sin repetidos.
+		 */
+		private boolean strictlySorted() {
+<span class="nc bnc" id="L167" title="All 2 branches missed.">			for (int i = 1; i &lt; elements.size(); i++) {</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">				if (elements.get(i-1) &gt;= elements.get(i)) {</span>
+<span class="nc" id="L169">					return false;</span>
+				}
+			}
+<span class="nc" id="L172">			return true;</span>
+		}
+		
+		
+		
+		@Override
+		public int hashCode() {
+<span class="nc" id="L179">			final int prime = 31;</span>
+<span class="nc" id="L180">			int result = 1;</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">			result = prime * result + ((elements == null) ? 0 : elements.hashCode());</span>
+<span class="nc" id="L182">			result = prime * result + size;</span>
+<span class="nc" id="L183">			return result;</span>
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+<span class="nc bnc" id="L188" title="All 2 branches missed.">			if (this == obj)</span>
+<span class="nc" id="L189">				return true;</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">			if (obj == null)</span>
+<span class="nc" id="L191">				return false;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">			if (getClass() != obj.getClass())</span>
+<span class="nc" id="L193">				return false;</span>
+<span class="nc" id="L194">			Set other = (Set) obj;</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">			if (elements == null) {</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">				if (other.elements != null)</span>
+<span class="nc" id="L197">					return false;</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">			} else if (!elements.containsAll(other.elements))</span>
+<span class="nc" id="L199">				return false;</span>
+<span class="nc bnc" id="L200" title="All 2 branches missed.">			if (size != other.size)</span>
+<span class="nc" id="L201">				return false;</span>
+<span class="nc" id="L202">			return true;</span>
+		}
+		
+		
+	}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

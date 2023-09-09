@@ -1,5 +1,7 @@
 package listas;
 
+import randoop.CheckRep;
+
 import java.util.Arrays;
 
 /**
@@ -103,7 +105,7 @@ public class ListaSobreArreglos implements Lista {
     }
     
     public String toString(){
-    	String res = "[";
+    	/*String res = "[";
     	for(int i=0; i<this.longitud();i++){
     		if (i==(this.longitud()-1)){
     			res=res + obtener(i).toString();
@@ -113,7 +115,16 @@ public class ListaSobreArreglos implements Lista {
     			
     	}		
     	res = res + "]";
-    	return res;
+    	return res;*/
+		String res = "[";
+		Object obj = null;
+		for(int i = 0; i < longitud(); i++)
+		{
+			res += ((obj  = obtener(i)) == null)? "null, " : obj.toString();
+		}
+		res  = res.substring(0, res.length() - 1);
+		res += "]";
+		return res;
     }
 
     /** 
@@ -135,10 +146,10 @@ public class ListaSobreArreglos implements Lista {
 				numItems = numItems - 1;
 			}
 			else {
-				items[index] = items[index+1];
-				eliminar(index+1);
+				items[index] = items[index + 1];
+				eliminar(index + 1);
+				numItems = numItems - 1;
 			}
-			numItems = numItems - 1; 
         }
     }  
 		
@@ -156,7 +167,7 @@ public class ListaSobreArreglos implements Lista {
 			throw new IndexOutOfBoundsException("ListaSobreArreglos: índice inválido");
 		}
 		else {
-			return (items[index + 1 ]); 
+			return (items[index]);
         }
     } 
 	
@@ -168,6 +179,7 @@ public class ListaSobreArreglos implements Lista {
      * @post. retornar true si y sólo si la representación de la lista es internamente
 	 * consistente, es decir, si 0<=numItems<=MAX_LIST.
      */
+	@CheckRep
     public boolean repOk() {
     	return (0<=numItems && numItems<=MAX_LIST);
 	}

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ListaSobreArreglos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">practico4-2023</a> &gt; <a href="index.source.html" class="el_package">listas</a> &gt; <span class="el_source">ListaSobreArreglos.java</span></div><h1>ListaSobreArreglos.java</h1><pre class="source lang-java linenums">package listas;
+
+import randoop.CheckRep;
+
+import java.util.Arrays;
+
+/**
+ * Implementacion del TAD Lista, usando un arreglo de objetos con tamaño 
+ * máximo MAX_LIST.
+ * Esta clase implementa los métodos abstractos declarados en Lista.
+ * @author Nazareno Aguirre
+ * @version 0.2 16/9/2009
+ */
+
+public class ListaSobreArreglos implements Lista {
+	
+    private static final int MAX_LIST = 10; // numero máximo de items en la 
+	                                         // lista. 
+    private Object items[];                  // arreglo usado para almacenar
+	                                         // los elementos de la lista.
+    private int numItems;                    // entero que indica el número
+    // de elementos en la lista, y
+                                             // el ``fin'' de la lista en
+	                                         // items.
+	
+	/**  
+	 * Constructor de la clase ListaSobreArreglos.   
+	 * @pre. true.
+	 * @post. Se crea un arreglo de objetos de tamaño MAX_LIST, y se
+	 * inicializa numItems en 0.  
+	 */
+<span class="fc" id="L32">    public ListaSobreArreglos() {		</span>
+<span class="fc" id="L33">        items = new Object[MAX_LIST];</span>
+<span class="fc" id="L34">		numItems = 0;		</span>
+<span class="fc" id="L35">    } </span>
+    
+	
+	/** 
+	 * Indica si la lista es vacía o no.
+	 * @return true ssi la lista no tiene elemento
+	 * @pre. true.
+	 * @post. Retorna true ssi la lista no tiene elementos
+	 */	
+    public boolean esVacia() {
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        return (numItems == 0);</span>
+    } 
+	
+	/** 
+	 * Retorna la cantidad de elementos de la lista.
+	 * @return retorna la cantidad de elementos de la lista.
+	 * @pre. true.
+	 * @post. retorna la cantidad de elementos de la lista.
+	 */
+	public int longitud() {
+<span class="fc" id="L55">        return numItems;</span>
+    } 
+	
+	/** 
+	 * Elimina todos los elementos de la lista.
+	 * @pre. true.
+	 * @post. elimina todos los elementos de la lista.
+	 */
+    public void vaciar() { 
+<span class="fc" id="L64">        numItems = 0;</span>
+<span class="fc" id="L65">    } </span>
+    
+    
+    public void insertar(Object item) {
+<span class="fc" id="L69">    	insertar(numItems, item);</span>
+<span class="fc" id="L70">    }</span>
+	
+	/** 
+	 * inserta item en la posición index de la lista.
+	 * @param index es el índice en el cual se inserta el elemento.
+	 * @param item es el objeto a insertar en la lista.
+	 * @pre. 0&lt;=index&lt;=longitud()  
+	 * @post. Si index es una posición válida, inserta item en esa posición.
+	 * Si index es una posición inválida, lanza una excepción de tipo
+	 * IndexOutOfBoundsException. Si la inserción falla por otro motivo, lanza
+	 * una excepción de tipo RunTimeException.
+	 */
+    public void insertar(int index, Object item) throws RuntimeException, IndexOutOfBoundsException/*, IllegalArgumentException*/ {    
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">    	if (numItems == MAX_LIST) {</span>
+<span class="nc" id="L84">				throw new RuntimeException(&quot;ListaSobreArreglos.insertar: Lista llena&quot;);</span>
+		}
+		else {
+<span class="fc bfc" id="L87" title="All 4 branches covered.">				if ((index&lt;0) || (index&gt;numItems)) {</span>
+<span class="fc" id="L88">					throw new IndexOutOfBoundsException(&quot;ListaSobreArreglos.insertar: índice inválido&quot;);</span>
+				}
+				else {
+<span class="fc bfc" id="L91" title="All 2 branches covered.">					if (index == numItems) {</span>
+						// insertar item en la última posición
+<span class="fc" id="L93">						items[index] = item;</span>
+<span class="fc" id="L94">						numItems = numItems + 1;</span>
+					}
+					else {
+<span class="fc" id="L97">						Object temp = items[index];</span>
+<span class="fc" id="L98">						items[index] = item;</span>
+						
+<span class="fc" id="L100">						insertar(index+1, temp);</span>
+						
+					}
+				}
+			}
+<span class="fc" id="L105">    }</span>
+    
+    public String toString(){
+    	/*String res = &quot;[&quot;;
+    	for(int i=0; i&lt;this.longitud();i++){
+    		if (i==(this.longitud()-1)){
+    			res=res + obtener(i).toString();
+    		}else{
+    			res=res + obtener(i).toString() + &quot;,&quot;;
+    		}
+    			
+    	}		
+    	res = res + &quot;]&quot;;
+    	return res;*/
+<span class="fc" id="L119">		String res = &quot;[&quot;;</span>
+<span class="fc" id="L120">		Object obj = null;</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">		for(int i = 0; i &lt; longitud(); i++)</span>
+		{
+<span class="fc bfc" id="L123" title="All 2 branches covered.">			res += ((obj  = obtener(i)) == null)? &quot;null, &quot; : obj.toString();</span>
+		}
+<span class="fc" id="L125">		res  = res.substring(0, res.length() - 1);</span>
+<span class="fc" id="L126">		res += &quot;]&quot;;</span>
+<span class="fc" id="L127">		return res;</span>
+    }
+
+    /** 
+	 * elimina el elemento en la posición index de la lista.
+	 * @param index es el índice del elemento a eliminar.
+	 * @pre. 0&lt;=index&lt;=longitud()-1  
+	 * @post. si index es una posición válida, se elimina el item de esa posición.
+	 *  Si index es una posición inválida, lanza una excepción de tipo
+	 * IndexOutOfBoundsException. 
+	 */
+    public void eliminar(int index) throws IndexOutOfBoundsException {
+		
+<span class="fc bfc" id="L140" title="All 4 branches covered.">        if ((index&lt;0) || (index&gt;=numItems)) {</span>
+<span class="fc" id="L141">			throw new IndexOutOfBoundsException(&quot;ListSobreArreglos.eliminar: indice inválido&quot;);</span>
+		}
+		else {
+<span class="fc bfc" id="L144" title="All 2 branches covered.">			if (index == numItems-1) {</span>
+				// eliminar el item en la ultima posicion
+<span class="fc" id="L146">				numItems = numItems - 1;</span>
+			}
+			else {
+<span class="fc" id="L149">				items[index] = items[index + 1];</span>
+<span class="fc" id="L150">				eliminar(index + 1);</span>
+<span class="fc" id="L151">				numItems = numItems - 1;</span>
+			}
+        }
+<span class="fc" id="L154">    }  </span>
+		
+	/** 
+	 * retorna el elemento en la posición index de la lista. 
+	 * @param index es el índice del elemento a retornar.
+	 * @return el elemento en la lista en la posición index.
+	 * @pre. 0&lt;=index&lt;=longitud()-1  
+	 * @post. si index es una posición válida, se retorna el item de esa posición.
+	 *  Si index es una posición inválida, lanza una excepción de tipo
+	 * IndexOutOfBoundsException. 
+	 */	
+    public Object obtener(int index) throws IndexOutOfBoundsException {
+<span class="fc bfc" id="L166" title="All 4 branches covered.">        if ((index&lt;0) || (index&gt;=numItems)) {</span>
+<span class="fc" id="L167">			throw new IndexOutOfBoundsException(&quot;ListaSobreArreglos: índice inválido&quot;);</span>
+		}
+		else {
+<span class="fc" id="L170">			return (items[index]);</span>
+        }
+    } 
+	
+	/**
+     * Indica si la representación de la lista es internamente consistente.  
+     * @return true si y sólo si la representación de la lista es internamente 
+     * consistente.
+     * @pre. true
+     * @post. retornar true si y sólo si la representación de la lista es internamente
+	 * consistente, es decir, si 0&lt;=numItems&lt;=MAX_LIST.
+     */
+	@CheckRep
+    public boolean repOk() {
+<span class="pc bpc" id="L184" title="2 of 4 branches missed.">    	return (0&lt;=numItems &amp;&amp; numItems&lt;=MAX_LIST);</span>
+	}
+
+
+
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L192">		final int prime = 31;</span>
+<span class="nc" id="L193">		int result = 1;</span>
+<span class="nc" id="L194">		result = prime * result + Arrays.deepHashCode(items);</span>
+<span class="nc" id="L195">		result = prime * result + numItems;</span>
+<span class="nc" id="L196">		return result;</span>
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="pc bpc" id="L202" title="1 of 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L203">			return true;</span>
+<span class="fc bfc" id="L204" title="All 2 branches covered.">		if (obj == null)</span>
+<span class="fc" id="L205">			return false;</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">		if (getClass() != obj.getClass())</span>
+<span class="fc" id="L207">			return false;</span>
+<span class="fc" id="L208">		ListaSobreArreglos other = (ListaSobreArreglos) obj;</span>
+<span class="fc bfc" id="L209" title="All 2 branches covered.">		if (!Arrays.deepEquals(items, other.items))</span>
+<span class="fc" id="L210">			return false;</span>
+<span class="fc bfc" id="L211" title="All 2 branches covered.">		if (numItems != other.numItems)</span>
+<span class="fc" id="L212">			return false;</span>
+<span class="fc" id="L213">		return true;</span>
+	}
+
+
+    
+    
+	
+
+
+
+		
+} 
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
