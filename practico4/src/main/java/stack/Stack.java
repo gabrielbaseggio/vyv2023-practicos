@@ -50,6 +50,10 @@ public interface Stack<T> {
 		 * @precondition. true.
 		 */
 	    public boolean isEmpty();
+
+		public int size();
+
+		public T get(int index);
 	    
 	    /** 
 		 * It removes all items from the stack.
@@ -65,5 +69,6 @@ public interface Stack<T> {
 	     * @precondition. true
 	     */
 	    public boolean repOk();
-	
+
+		public int hashCode();
 }

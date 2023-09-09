@@ -14,8 +14,6 @@ RegressionTest5.class,
 RegressionTest6.class, 
 RegressionTest7.class, 
 RegressionTest8.class, 
-RegressionTest9.class, 
-RegressionTest10.class, 
-RegressionTest11.class
+RegressionTest9.class
 })
 public class RegressionTest{ }
