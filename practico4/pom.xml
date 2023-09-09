@@ -154,15 +154,17 @@
             <groupId>org.pitest</groupId>
             <artifactId>pitest-maven</artifactId>
             <version>1.8.0</version>
-            
-            <configuration>
-       		 <targetClasses>
-            	<!--param>clase04.SimpleRoutines</param-->
-        	</targetClasses>
-        	<targetTests>
-            	<!--param>clase04.BisiestoTest</param-->
-        	</targetTests>
-   			 </configuration>
+
+                <configuration>
+                    <targetClasses>
+                        <!--param>listas.ListaSobreArreglos</param-->
+                        <param>stack.ConcreteStack</param>
+                    </targetClasses>
+                    <targetTests>
+                        <!--param>listas.AllTests</param-->
+                        <param>stack.StackRegressionTest</param>
+                    </targetTests>
+                </configuration>
             
             <dependencies>
                 <!-- https://mvnrepository.com/artifact/org.pitest/pitest-junit5-plugin -->
