@@ -162,7 +162,7 @@
                     </targetClasses>
                     <targetTests>
                         <!--param>listas.AllTests</param-->
-                        <param>stack.StackRegressionTest</param>
+                        <param>stack.ConcreteStackAllTests</param>
                     </targetTests>
                 </configuration>
             
@@ -175,8 +175,16 @@
                 </dependency>
             </dependencies>
         </plugin>
-	
-</plugins>
+     <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-compiler-plugin</artifactId>
+         <configuration>
+             <source>1.8</source>
+             <target>1.8</target>
+         </configuration>
+     </plugin>
+
+ </plugins>
 	</build>
 	
 	

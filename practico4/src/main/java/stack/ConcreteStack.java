@@ -85,6 +85,7 @@ public class ConcreteStack<T> implements Stack<T>{
         for(T item : stack)
         {
             if(!item.equals(other.get(index))) { return false; }
+            index++;
         }
 
         return true;
