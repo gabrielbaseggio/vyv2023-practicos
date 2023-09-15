@@ -158,11 +158,11 @@
                 <configuration>
                     <targetClasses>
                         <!--param>listas.ListaSobreArreglos</param-->
-                        <param>stack.ConcreteStack</param>
+                        <param>set.Set</param>
                     </targetClasses>
                     <targetTests>
                         <!--param>listas.AllTests</param-->
-                        <param>stack.ConcreteStackAllTests</param>
+                        <param>set.SetAllTests</param>
                     </targetTests>
                 </configuration>
             
