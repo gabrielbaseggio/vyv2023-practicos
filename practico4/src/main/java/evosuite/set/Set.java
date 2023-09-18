@@ -26,6 +26,7 @@ public class Set{
 		
 		
 		public Set(Collection<Integer> s) {
+			if(s == null) { throw new IllegalArgumentException(); }
 			this.elements = new LinkedList<Integer>();
 			this.size = 0;
 			for(Integer e:s) {
@@ -192,18 +193,38 @@ public class Set{
 			if (getClass() != obj.getClass())
 				return false;
 			Set other = (Set) obj;
-			if (elements == null) {
+			if (elements == null)
 				if (other.elements != null)
 					return false;
-			} else if (!elements.containsAll(other.elements))
-				return false;
 			if (size != other.size)
 				return false;
-			return true;
+
+			return elements.containsAll(other.elements)
+					&& other.elements.containsAll(elements);
 		}
 		
-		
+		public boolean repOk()
+		{
+			return strictlySorted()
+				   && noRepeated();
+		}
+
+	private boolean noRepeated()
+	{
+		for(int i = 0; i < elements.size(); i++)
+		{
+			for(int j = i+1; j < elements.size(); j++)
+			{
+				if(elements.get(i).equals(elements.get(j)))
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
+}
 
 
 

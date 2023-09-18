@@ -164,11 +164,13 @@
                 <configuration>
                     <targetClasses>
                         <!--param>listas.ListaSobreArreglos</param-->
-                        <param>set.Set</param>
+                        <param>evosuite.listas.ListaSobreArreglos</param>
+                        <param>evosuite.set.Set</param>
                     </targetClasses>
                     <targetTests>
                         <!--param>listas.AllTests</param-->
-                        <param>set.SetAllTests</param>
+
+                        <param>evosuite.set.EvoSuiteSetAllTests</param>
                     </targetTests>
                 </configuration>
             

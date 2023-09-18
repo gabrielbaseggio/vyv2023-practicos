@@ -77,7 +77,8 @@ public class ListaSobreArreglos implements Lista {
 	 * IndexOutOfBoundsException. Si la inserción falla por otro motivo, lanza
 	 * una excepción de tipo RunTimeException.
 	 */
-    public void insertar(int index, Object item) throws RuntimeException, IndexOutOfBoundsException/*, IllegalArgumentException*/ {    
+    public void insertar(int index, Object item) throws RuntimeException, IndexOutOfBoundsException/*, IllegalArgumentException*/ {
+		if (item == null) { throw new IllegalArgumentException(); }
     	if (numItems == MAX_LIST) {
 				throw new RuntimeException("ListaSobreArreglos.insertar: Lista llena");
 		}
@@ -156,7 +157,7 @@ public class ListaSobreArreglos implements Lista {
 			throw new IndexOutOfBoundsException("ListaSobreArreglos: índice inválido");
 		}
 		else {
-			return (items[index + 1 ]); 
+			return (items[index]);
         }
     } 
 	
