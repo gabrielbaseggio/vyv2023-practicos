@@ -8,7 +8,8 @@ import java.util.Scanner;
 
 public class EnvExample {
 
-	public boolean checkContent() throws Exception{
+	public boolean checkContent() throws Exception
+	{
 
 		Scanner console = new Scanner(System.in);
 		String fileName = console.nextLine();
