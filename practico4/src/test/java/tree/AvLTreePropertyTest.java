@@ -4,6 +4,10 @@ import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 
+import korat.finitization.IFinitization;
+import korat.finitization.IObjSet;
+import korat.finitization.impl.Finitization;
+import korat.finitization.impl.FinitizationFactory;
 import net.jqwik.api.*;
 import net.jqwik.api.constraints.IntRange;
 
@@ -11,11 +15,9 @@ import net.jqwik.api.constraints.IntRange;
 
 
 public class AvLTreePropertyTest { 
-	
-	
+
     @Provide
 	private  Arbitrary<AvlTree> exhaustiveTreeGenerator() {
-			//TODO
 		return null;
 	}
 	
