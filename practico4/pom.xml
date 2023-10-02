@@ -166,11 +166,13 @@
                         <!--param>listas.ListaSobreArreglos</param-->
                         <param>evosuite.listas.ListaSobreArreglos</param>
                         <param>evosuite.set.Set</param>
+                        <param>evoMock.EnvExample</param>
                     </targetClasses>
                     <targetTests>
                         <!--param>listas.AllTests</param-->
 
                         <param>evosuite.set.EvoSuiteSetAllTests</param>
+                        <param>evoMock.EnvExample_ESTest</param>
                     </targetTests>
                 </configuration>
             
